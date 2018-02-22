@@ -8,6 +8,16 @@ output: html_document
 
 In this tutorial we introduce *Bayesian Structural Time Series* models based on the paper [Prediction the Present with Bayesian Structural Time Series](http://www.inderscience.com/offer.php?id=59942) by Steven L. Scott and Hal Varian. We start with an overiew of the theory behind the model then illustrate how it can be implemented using the R package [bsts](https://cran.r-project.org/web/packages/bsts/index.html).
 
+Time series analysis concerns data that are collected at periodic time intervals (i.e. daily, weekly, monthly). The difficulty in time series analysis is that our data is not independent and identically distributed (i.i.d.) as is usually assumed in the classical statistics framework. In time series analysis, the fist i in i.i.d. is relaxed to allow for dependency between each data point. For example, the average rainfall on March 2 will likely be related to the average rainfall on March 1. The traditional approach in time series is to use ARIMA or AutoRegressive Integrated Moving Averge models. Structural time series models differ in that they take a dynamical systems approach. They are more general than ARIMA models, and include ARIMA models as special cases.
+
+
+
+
+
+
+
+
+
 
 
 
