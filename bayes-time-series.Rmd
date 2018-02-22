@@ -11,9 +11,20 @@ In this tutorial we introduce *Bayesian Structural Time Series* models based on 
 Time series analysis concerns data that are collected at periodic time intervals (i.e. daily, weekly, monthly). The difficulty in time series analysis is that our data is not independent and identically distributed (i.i.d.) as is usually assumed in the classical statistics framework. In time series analysis, the fist i in i.i.d. is relaxed to allow for dependency between each data point. For example, the average rainfall on March 2 will likely be related to the average rainfall on March 1. The traditional approach in time series is to use ARIMA or AutoRegressive Integrated Moving Averge models. Structural time series models differ in that they take a dynamical systems approach. They are more general than ARIMA models, and include ARIMA models as special cases.
 
 
+### Structural Time Series Models
 
+In this section we provide an overview of structural time series models, a.k.a. state space time series models. Note that we do not enter the Bayesian context until the next section. Here, we consider structural models from the classical perspective.
 
+In structural time series modeling, we consider our data to come from some unobserverd process called the state space and attempt to model this latent state. The simplest model is called the *local level model*. The equations for this model are as follows:
 
+\begin{align}
+y_t &= \mu_t + \varepsilon_t  &\varepsilon_t \sim N(0,\sigma^2_{\varepsilon}) \\
+\mu_{t+1} &= \mu_t + \xi_t  &\xi_t \sim N(0, \sigma^2_{\xi}). \nonumber
+\end{align}
+
+Here, $t = 1,2,\ldots, n$ is the time index and $\mu_t$ is our latent state, the unobserved level at time $t$. The are two sources of error here, $\varepsilon_t$ and $\xi_t$. These correspond to error in the level, $\xi_t$, and the error due to observation, $\varepsilon_t$.
+
+This model estimates the series by considering only the level of the series at each time point. We can think of this as analogous to the inercept in linear regression but allowing for the intercept to vary over time.
 
 
 
