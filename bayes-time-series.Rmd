@@ -1,0 +1,15 @@
+---
+title: "Bayesian Structural Time Series"
+author: "Andrew Bates, Joshua Gloyd, Tyler"
+output: html_document
+---
+
+### Introduction
+
+In this tutorial we introduce *Bayesian Structural Time Series* models based on the paper [Prediction the Present with Bayesian Structural Time Series](http://www.inderscience.com/offer.php?id=59942) by Steven L. Scott and Hal Varian. We start with an overiew of the theory behind the model then illustrate how it can be implemented using the R package [bsts](https://cran.r-project.org/web/packages/bsts/index.html).
+
+
+
+
+
+
