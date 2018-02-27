@@ -1,6 +1,6 @@
 ---
 title: "Bayesian Structural Time Series"
-author: "Andrew Bates, Joshua Gloyd, Tyler"
+author: "Andrew Bates, Joshua Gloyd, Tyler Tucker"
 output: html_document
 ---
 

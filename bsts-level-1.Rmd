@@ -46,8 +46,13 @@ Now that we have and idea of what a structural time series model is, we can talk
 * Spike and Slab regression
 * Bayesian model averaging
 
-We already talked about the first component.
 
+#### Spike and Slab 
+
+Spike and Slab is a Bayesian method for variable selection in regression. If all we have is the time series itself, and no covariates, nothing happens here.
+
+
+#### Bayesian model averaging
 
 
 
