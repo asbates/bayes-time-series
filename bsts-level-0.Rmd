@@ -1,0 +1,35 @@
+---
+title: ''
+output: html_document
+---
+
+```{r, echo = FALSE, message = FALSE}
+library(Boom)
+library(zoo)
+library(bsts)
+
+gilbralter <- read.csv("gilbralter.csv")  # read_csv giving warning
+gilb <- ts(gilbralter$tempMean, start=c(2004,1,13), end=c(2017, 11, 25), frequency=30)
+```
+
+
+
+# Bayesian Structural Time Series Level 0: Introduction
+
+Hello fellow traveler! I can see by the look on your face that you want to know about how Baysean statistics can be applied to time series analysis. Well great news, that is exactly what you are about to learn!
+
+Before we begin, we assume you have a basic understanding of **time series**: a stochastic process of state variables whose current state depends on its past, with some added random noise. Ahh time series analysis, the mysterious and elusive technique that can be used to predict the future, but fret naut *Laughs heartly*. Together we may unravel these secrets together. Let's embark on this quest with a quick introduction to  Bayesian Structural Time Series modeling. 
+
+In this tutorial, we consider the sea surface temperature (SST) of the first 30 meters around Gilbralter. The data looks like this:
+
+```{r, echo = FALSE, fig.width = 10, fig.height = 4}
+plot(gilb, main = 'Gibralter Sea Surface Temperature', ylab = 'SST')
+```
+
+
+
+
+
+
+
+
