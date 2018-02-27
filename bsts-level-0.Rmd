@@ -4,11 +4,10 @@ output: html_document
 ---
 
 ```{r, echo = FALSE, message = FALSE}
-library(Boom)
-library(zoo)
 library(bsts)
+library(readr)
 
-gilbralter <- read.csv("gilbralter.csv")  # read_csv giving warning
+gilbralter <- read_csv("gilbraltersimple.csv")  
 gilb <- ts(gilbralter$tempMean, start=c(2004,1,13), end=c(2017, 11, 25), frequency=30)
 ```
 
@@ -18,13 +17,38 @@ gilb <- ts(gilbralter$tempMean, start=c(2004,1,13), end=c(2017, 11, 25), frequen
 
 Hello fellow traveler! I can see by the look on your face that you want to know about how Baysean statistics can be applied to time series analysis. Well great news, that is exactly what you are about to learn!
 
-Before we begin, we assume you have a basic understanding of **time series**: a stochastic process of state variables whose current state depends on its past, with some added random noise. Ahh time series analysis, the mysterious and elusive technique that can be used to predict the future, but fret naut *Laughs heartly*. Together we may unravel these secrets together. Let's embark on this quest with a quick introduction to  Bayesian Structural Time Series modeling. 
+Before we begin, we assume you have a basic understanding of **time series**: a stochastic process of state variables whose current state depends on its past, with some added random noise. Ahh time series analysis, the mysterious and elusive technique that can be used to predict the future, but fret naut *Laughs heartly*. Together we may unravel these secrets together. Let's embark on this quest with a quick introduction to  Bayesian Structural Time Series (BSTS) modeling. 
 
 In this tutorial, we consider the sea surface temperature (SST) of the first 30 meters around Gilbralter. The data looks like this:
 
 ```{r, echo = FALSE, fig.width = 10, fig.height = 4}
 plot(gilb, main = 'Gibralter Sea Surface Temperature', ylab = 'SST')
 ```
+
+
+Now let us marvel at the model's ability to predict the future:
+
+```{r, echo = FALSE, cache = TRUE, fig.width = 10, fig.height = 4}
+nseasons <- 30
+ss <- AddLocalLinearTrend(list(), gilb)
+ss <- AddSeasonal(ss, gilb, nseasons = nseasons)
+model <- bsts(gilb, state.specification = ss, niter = 500, ping = 0)
+pred <- predict(model, horizon = 12)
+plot(pred, plot.original = 156, ylab = 'SST')
+```
+
+Wow! How wonderful that is. But wait, there's more! We can do more than just predict the future. What? There's more? Oh yes. Not only can we gaze into the future, but with the power of BSTS, we have the ability to peer into the internals of the model:
+
+```{r, echo = FALSE, fig.width = 10, fig.height = 4}
+plot(model, 'components')
+```
+
+
+
+### Your quest, should you choose to accept...
+
+What a method! But how does it work? Glory and reward await those who are brave enough to navigate the trials and tribulations involved in learning BSTS. Come stalwart adventurer! let us explore this dungeon of mysterious treasures. In the following tutorials, we will battle untold horrors and demons together, who guard the secrects of BSTS. 
+
 
 
 
