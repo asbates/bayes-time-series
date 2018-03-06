@@ -54,7 +54,19 @@ y_t &= \mu_t + \varepsilon_t  &\varepsilon_t \sim N(0, \sigma_{\varepsilon}^2) \
 \nu_{t+1} &= \nu_t + \zeta_t  &\zeta_t \sim N(0, \sigma_{\zeta}^2)
 \end{align*}
 
+## Pictures!
 
+```{r, echo = FALSE, message = FALSE}
+library(bsts)
+library(readr)
+
+gilbralter <- read_csv("gilbraltersimple.csv")  
+gilb <- ts(gilbralter$tempMean, start=c(2004,1,13), end=c(2017, 11, 25), frequency=30)
+```
+
+```{r, echo=FALSE, fig.height=2.4, fig.width=3.5}
+#plot(gilb, main = 'Gibralter Sea Surface Temperature', ylab = 'SST')
+```
 
 ## Structural Time Series
 
