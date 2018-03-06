@@ -1,0 +1,90 @@
+---
+title: "Adventures in Bayesian Structural Time Series"
+author: "Andrew Bates, Josh Gloyd, Tyler Tucker"
+output: beamer_presentation
+urlcolor: blue
+---
+
+
+## What is BSTS?
+
+- Comprised of 3 components:
+    - Structural Time Series model (a.k.a. state space model)
+    - Spike and Slab regression
+    - Bayesian model averaging
+
+- [Predicting the Present with Bayesian Structural Time Series](http://www.inderscience.com/offer.php?id=59942) by Steven L. Scott and Hal Varian (Google)
+- Implementation
+    - R: [bsts](https://cran.r-project.org/web/packages/bsts/index.html)
+        - or [Causal Impact](https://google.github.io/CausalImpact/CausalImpact.html)
+    - Python: [Causal Impact](https://github.com/tcassou/causal_impact)
+
+
+## Structural Time Series 
+
+- Data from unobserved **state space** plus noise
+- Model the latent state space instead of the data directly
+
+### Local Level Model
+
+- $y_t$: data
+- $\mu_t$: latent state
+
+\begin{align*}
+y_t &= \mu_t + \varepsilon_t  &\varepsilon_t \sim N(0,\sigma^2_{\varepsilon}) \\
+\mu_{t+1} &= \mu_t + \xi_t  &\xi_t \sim N(0, \sigma^2_{\xi}) 
+\end{align*}
+
+Analogous to the inercept in linear regression but allowing for the intercept to vary over time
+
+
+## Structural Time Series
+
+### Local Linear Trend Model
+
+- $y_t, \mu_t$: same as before
+- $\nu_t$: slope (additional state component)
+
+\begin{align*}
+y_t &= \mu_t + \varepsilon_t  &\varepsilon_t \sim N(0, \sigma_{\varepsilon}^2) \\
+\mu_{t+1} &= \mu_t + \nu_t + \xi_t  &\xi_t \sim N(0, \sigma_{\xi}^2) \\
+\nu_{t+1} &= \nu_t + \zeta_t  &\zeta_t \sim N(0, \sigma_{\zeta}^2)
+\end{align*}
+
+
+
+## Structural Time Series
+
+### General Form
+
+- $y_t$: data
+- $\alpha_t$: state component
+
+\begin{align}
+y_t &= Z_t'\alpha_t + \varepsilon_t  &\varepsilon_t \sim N(0, H_t)  \\
+\alpha_{t+1} &= T_t\alpha_t + R_t\eta_t  &\eta_t \sim N(0, Q_t) 
+\end{align}
+
+- (1): **observation equation**
+- (2): **transition equation**
+
+
+## Structural Time Series in Bayesian Context
+
+- Spike and slab regression
+    - Used when regression components are included
+    - Variable selection technique
+    - Prior on regression coefficients
+
+- Bayesian Model Averaging
+    - Consequence of spike and slab prior
+    - Different $\beta$s included in each draw of posterior (i.e. different model on each draw)
+
+- Prior Elicitation and Posterior Sampling
+    - Inclusion probabilities for regression coefficients 
+    - Or: expected model size, expected $R^2$, weight given to $R^2$
+    - Gibbs sampler (stochastic search variable selection) to draw from posterior
+    - For details see paper by Scott and Varian
+
+
+
