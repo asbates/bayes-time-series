@@ -72,7 +72,7 @@ y_t &= Z_t'\alpha_t + \varepsilon_t  &\varepsilon_t \sim N(0, H_t)  \\
 - (2): **transition equation**
 
 
-## Structural Time Series in Bayesian Context
+## Bayesian Context
 
 - Spike and slab regression
     - Used when regression components are included

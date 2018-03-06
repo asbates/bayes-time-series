@@ -161,13 +161,13 @@
 \setbeamercolor{subsubitem}{fg = titlered}
 
 % This sets the color for each item heading of the description environment.
-\setbeamercolor{description item}{fg = titlegold}
+\setbeamercolor{description item}{fg = titlered}
 
 % NOTE: Setting the color black for all the items also sets in black for other environemnts like enumerate.
 
 % We also need to fix the colours for captions for figures and tables.
-\setbeamercolor{caption}{fg = titlegold}
-\setbeamercolor{caption name}{fg = titlegold}
+\setbeamercolor{caption}{fg = titlered}
+\setbeamercolor{caption name}{fg = titlered}
 
 % In addition, we can also change the background colour of the slides depending on pur requirement.
 % \setbeamercolor{background canvas}{bg = blue!5}
@@ -185,26 +185,22 @@
 
 
 % Standard block
-\setbeamercolor{block title}{fg = titlegold, bg = StdTitle!15!white}
-\setbeamercolor{block body}{bg = StdBody!5!white}
+\setbeamercolor{block title}{fg = titlered, bg = DmgSlateGray}
+\setbeamercolor{block body}{bg = bgtan}
 
 % Alert block
-\setbeamercolor{block title alerted}{bg = AlTitle}
-\setbeamercolor{block body alerted}{bg = AlBody!5!white}
+\setbeamercolor{block title alerted}{bg = DmgSlateGray}
+\setbeamercolor{block body alerted}{bg = bgtan}
 
 % Example block
-\setbeamercolor{block title example}{bg = ExTitle}
-\setbeamercolor{block body example}{bg = ExBody!5!white}
+\setbeamercolor{block title example}{bg = DmgSlateGray}
+\setbeamercolor{block body example}{bg = bgtan}
 
 
 
 %%%%%%
 % And one final thing, the colour of the text
 \setbeamercolor{normal text}{fg = Ftitle}
-
-
-
-
 
 
 %%%%%%%%%%%%%%
@@ -216,14 +212,14 @@
 
 %%%%%%
 % Here we are using default fonts
-\usefonttheme{professionalfonts}
+%\usefonttheme{professionalfonts}
+\usefonttheme[stillsansserifmath, stillsansserifsmall]{serif}
 
 % Font for the presentation title
-\setbeamerfont{title}{size = \huge}
+\setbeamerfont{TitleFont}{size = \huge}
 
 % Font of the frame titles
-\setbeamerfont{frametitle}{size = \Large}
-
+\setbeamerfont{TitleFont}{size = \Large}
 
 %%%%%%%%%%%%%%
 %%
@@ -237,7 +233,11 @@
 \useinnertheme{rounded}
 
 % Instead of rounded circles, we will use triangles as the indicator for items.
-\setbeamertemplate{itemize items}[triangle]
+
+
+%\setbeamertemplate{itemize items}[triangle]
+\usepackage{graphicx}
+\setbeamertemplate{itemize item}[\includegraphics{bullet-clipart-bullet-point-8.jpg}]}
 
 % The default option for enumerate environment removes the circles around the numbers provided by the "rounded" inner theme. Just simple numbers remain.
 %\setbeamertemplate{enumerate items}[default]
@@ -271,7 +271,7 @@
 \raisebox{-12mm}[0pt][0pt]{%
 \begin{pgfpicture}{0mm}{0mm}{0mm}{0mm}
 \pgfsetlinewidth{0.28mm}
-\color{gray}
+\color{pagegold}
 \pgfline{\pgfpoint{-3mm}{1mm}}{\pgfpoint{10.8cm}{1mm}}
 \end{pgfpicture}}}
 
@@ -301,7 +301,7 @@
 \newcommand{\Ffootline}{%
 \insertsection % The left end of the footline
 \hfill
-\textit{Time Series} % The center
+\textit{Baysean Structural Time Series} % The center
 \hfill
 \insertframenumber/\inserttotalframenumber} % And the right end
 
