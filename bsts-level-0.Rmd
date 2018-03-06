@@ -1,6 +1,8 @@
 ---
 title: ''
-output: html_document
+output:
+  pdf_document: default
+  html_document: default
 ---
 
 ```{r, echo = FALSE, message = FALSE}

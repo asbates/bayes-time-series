@@ -3,9 +3,9 @@ title: "Adventures in Bayesian Structural Time Series"
 author: "Andrew Bates, Josh Gloyd, Tyler Tucker"
 urlcolor: blue
 output: beamer_presentation
-  # theme: 'themename' need to add : after beamer_presentation as well
-  # colortheme: 'name'
-  # fonttheme: 'name'
+theme: 'dndtheme'
+#colortheme: 'dndcolors'
+#fonttheme: 'dndfonts'
 ---
 
 
