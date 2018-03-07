@@ -3,13 +3,26 @@ title: "Adventures in Bayesian Structural Time Series"
 author: "Andrew Bates, Josh Gloyd, Tyler Tucker"
 urlcolor: blue
 output: beamer_presentation
-theme: 'dndtheme'
+theme: 'dnd'
 #colortheme: 'dndcolors'
 #fonttheme: 'dndfonts'
 ---
 
+## What are Time Series?
+```{r, echo = FALSE, message = FALSE, fig.align = "left", fig.width = 8, fig.height = 4, out.width = "55%"}
+library(readr)
+gilbralter <- read_csv("data/gilbraltersimple.csv")  
+gilb <- ts(gilbralter$tempMean, start=c(2004,1,13), end=c(2017, 11, 25), frequency=30)
+plot(gilb, main = 'Gibralter Sea Surface Temperature', ylab = 'SST')
+```
 
-## What is BSTS?
+```{r, echo = FALSE, message = FALSE, fig.align = "right", fig.width = 4, fig.height = 4, out.width = "35%"}
+library(knitr)
+img1_path <- "images/nowcasting.png"
+include_graphics(img1_path)
+```
+
+## What are BSTS?
 
 - Comprised of 3 components:
     - Structural Time Series model (a.k.a. state space model)
@@ -53,20 +66,6 @@ y_t &= \mu_t + \varepsilon_t  &\varepsilon_t \sim N(0, \sigma_{\varepsilon}^2) \
 \mu_{t+1} &= \mu_t + \nu_t + \xi_t  &\xi_t \sim N(0, \sigma_{\xi}^2) \\
 \nu_{t+1} &= \nu_t + \zeta_t  &\zeta_t \sim N(0, \sigma_{\zeta}^2)
 \end{align*}
-
-## Pictures!
-
-```{r, echo = FALSE, message = FALSE}
-library(bsts)
-library(readr)
-
-gilbralter <- read_csv("gilbraltersimple.csv")  
-gilb <- ts(gilbralter$tempMean, start=c(2004,1,13), end=c(2017, 11, 25), frequency=30)
-```
-
-```{r, echo=FALSE, fig.height=2.4, fig.width=3.5}
-#plot(gilb, main = 'Gibralter Sea Surface Temperature', ylab = 'SST')
-```
 
 ## Structural Time Series
 
