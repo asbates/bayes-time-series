@@ -24,17 +24,17 @@ include_graphics(img1_path)
 
 ## What are BSTS?
 
-- Comprised of 3 components:
-    - Structural Time Series model (a.k.a. state space model)
-    - Spike and Slab regression
-    - Bayesian model averaging
+> - [Predicting the Present with Bayesian Structural Time Series](http://www.inderscience.com/offer.php?id=59942) by Steven L. Scott and Hal Varian (Google)
 
-- [Predicting the Present with Bayesian Structural Time Series](http://www.inderscience.com/offer.php?id=59942) by Steven L. Scott and Hal Varian (Google)
-- Implementation
-    - R: [bsts](https://cran.r-project.org/web/packages/bsts/index.html)
-        - or [Causal Impact](https://google.github.io/CausalImpact/CausalImpact.html)
-    - Python: [Causal Impact](https://github.com/tcassou/causal_impact)
+> - Implementation
+>      - R: [bsts](https://cran.r-project.org/web/packages/bsts/index.html)
+>          - or [Causal Impact](https://google.github.io/CausalImpact/CausalImpact.html)
+>      - Python: [Causal Impact](https://github.com/tcassou/causal_impact)
 
+> - Comprised of 3 components:
+>      - Structural Time Series model (a.k.a. state space model)
+>      - Spike and Slab regression
+>      - Bayesian model averaging
 
 ## Structural Time Series 
 
@@ -99,6 +99,3 @@ y_t &= Z_t'\alpha_t + \varepsilon_t  &\varepsilon_t \sim N(0, H_t)  \\
     - Or: expected model size, expected $R^2$, weight given to $R^2$
     - Gibbs sampler (stochastic search variable selection) to draw from posterior
     - For details see paper by Scott and Varian
-
-
-
