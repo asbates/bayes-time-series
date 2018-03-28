@@ -24,17 +24,17 @@ include_graphics(img1_path)
 
 ## What are BSTS?
 
-- Comprised of 3 components:
-    - Structural Time Series model (a.k.a. state space model)
-    - Spike and Slab regression
-    - Bayesian model averaging
+> - [Predicting the Present with Bayesian Structural Time Series](http://www.inderscience.com/offer.php?id=59942) by Steven L. Scott and Hal Varian (Google)
 
-- [Predicting the Present with Bayesian Structural Time Series](http://www.inderscience.com/offer.php?id=59942) by Steven L. Scott and Hal Varian (Google)
-- Implementation
-    - R: [bsts](https://cran.r-project.org/web/packages/bsts/index.html)
-        - or [Causal Impact](https://google.github.io/CausalImpact/CausalImpact.html)
-    - Python: [Causal Impact](https://github.com/tcassou/causal_impact)
+> - Implementation
+>      - R: [bsts](https://cran.r-project.org/web/packages/bsts/index.html)
+>          - or [Causal Impact](https://google.github.io/CausalImpact/CausalImpact.html)
+>      - Python: [Causal Impact](https://github.com/tcassou/causal_impact)
 
+> - Comprised of 3 components:
+>      - Structural Time Series model (a.k.a. state space model)
+>      - Spike and Slab regression
+>      - Bayesian model averaging
 
 ## Structural Time Series 
 
@@ -100,5 +100,37 @@ y_t &= Z_t'\alpha_t + \varepsilon_t  &\varepsilon_t \sim N(0, H_t)  \\
     - Gibbs sampler (stochastic search variable selection) to draw from posterior
     - For details see paper by Scott and Varian
 
+## Spike and Slab Regression
 
+### Joint Prior
+
+- $\gamma_k = 1$ if $\beta_k \neq 0$
+- $\gamma_k = 0$ if $\beta_k = 0$
+
+\begin{align*}
+p(\beta,\gamma,\sigma^2_{\epsilon}) = p(\beta_{\gamma}|\gamma,\sigma^2_{\epsilon})p(\sigma^2_{\epsilon}|\gamma)p(\gamma)
+\end{align*}
+
+## Spike and Slab Regression
+
+### "Spike" Prior
+
+- $\pi_k$: probability a particular $\beta_k$ is included in the model
+
+\begin{align*}
+\gamma \sim \prod_{k=1}^{K} \pi_k^{\gamma_k}(1-\pi_k)^{1-\gamma_k}
+\end{align*}
+
+## Spike and Slab Regression
+
+### "Slab" Prior
+
+- $b_{\gamma}$: b is a vector of prior means
+- $\Omega_{\gamma}^{-1}$: denotes the rows and columns of symmetric matrix $\Omega^{-1}$ corresponding to $\gamma_k = 1$
+- $ss$: prior sum of squares
+- $\nu$: prior sample size
+
+\begin{align*}
+\beta_{\gamma}|\sigma^2_{\epsilon},\gamma \sim N\Big(b_{\gamma},\sigma^2_{\epsilon}(\Omega_{\gamma}^{-1})^{-1}\Big) \hspace{10mm} \frac{1}{\sigma^2_{\epsilon}}|\gamma \sim Ga\Big(\frac{\nu}{2},\frac{ss}{2}\Big)
+\end{align*}
 
