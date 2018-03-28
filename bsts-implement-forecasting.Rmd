@@ -1,0 +1,86 @@
+---
+title: "Implementing BSTS Forecasting"
+author: "Andrew Bates, Josh Gloyd, Tyler Tucker"
+urlcolor: blue
+output: beamer_presentation
+theme: 'dnd'
+#colortheme: 'dndcolors'
+#fonttheme: 'dndfonts'
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, size = "normal")
+library(Boom)
+library(zoo)
+library(bsts)     # load the bsts package
+library(readr)
+library(latex2exp)
+options( warn = -1 )
+options(repr.plot.width=7, repr.plot.height=5)
+```
+
+## Time Series Visual
+
+```{r, echo=TRUE, results="hide", message = FALSE, fig.align = "left", fig.width = 8, fig.height = 4, out.width = "75%"}
+gilbralter <- read_csv("data/gilbralter.csv")
+gilT <- ts(gilbralter$tempMean, start=c(2004,1,13),
+           end=c(2017, 11, 25), frequency=30)
+plot(gilT, main='SST of Gilbralter region',
+    xlab='Date',
+    ylab='Temperature [C]')
+```
+
+## Set up BSTS model?
+These three lines of code are setting up the model as 
+$$
+y_t = \mu_t + \tau_t + \epsilon_t
+$$
+where $\mu_t$ is a local linear component, $\tau_t$ is a seasonal component, and $\epsilon_t$ is a white noise process centered about zero and with standard deviation $\sigma^2$. 
+```{r, echo=TRUE, results="hide", message = FALSE, fig.align = "left", fig.width = 6, fig.height = 4, out.width = "65%"}
+nseasons = 30
+ss <- list()
+ss <- AddLocalLinearTrend(ss, gilT)
+ss <- AddSeasonal(ss, gilT, nseasons=nseasons)
+```
+## Run the model
+Implement the bsts function with time series, state specification object, and number of iterations runs the MCMC and fits the parameters.
+```{r, echo=TRUE, results="hide", message = FALSE, fig.align = "left", fig.width = 8, fig.height = 4, out.width = "75%"}
+modelGilT <- bsts(gilT,
+               state.specification=ss,
+               niter = 1000)
+```
+## Interpret
+```{r, echo=TRUE, eval=FALSE}
+plot(modelGilT,
+    main=TeX('Conditional Expectation of $y_i$'),
+    xlab='time idx', ylab='distribution', 
+    ylim=c(15, 26))
+legend("topright",
+       legend=c(TeX('$E(y_i|data)$'), "data"),
+       col=c("black", "blue"),
+       lty=c(1,NA), pch=c(NA, 1), cex=.7)
+```
+## Interpret
+```{r, echo=FALSE, results="hide", message = FALSE, fig.align = "left", fig.width = 8, fig.height = 4, out.width = "95%"}
+plot(modelGilT,
+    main=TeX('Conditional Expectation of $y_i$'),
+    xlab='time idx', ylab='distribution', 
+    ylim=c(15, 26))
+legend("topright",
+       legend=c(TeX('$E(y_i|data)$'), "data"),
+       col=c("black", "blue"),
+       lty=c(1,NA), pch=c(NA, 1), cex=.7)
+```
+## Interpret
+Trend and Season plots are available too
+```{r, echo=TRUE, results="show", message = FALSE, fig.align = "left", fig.width = 8, fig.height = 4, out.width = "75%"}
+plot(modelGilT, "components")
+```
+## Forecasting
+From here we can perform forecasting 12 time steps in the future (144 days) with the following code.
+Green dotted line is the 97.5 % prediction interval, the blue line is the 2.5 % PI
+```{r, echo=TRUE, results="show", message = FALSE, fig.align = "left", fig.width = 8, fig.height = 4, out.width = "75%"}
+pred1 <- predict(modelGilT, horizon = 12)
+plot(pred1, plot.original = 156)
+```
