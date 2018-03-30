@@ -3,10 +3,6 @@ title: "Overall Outline"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
 I (Andrew) think having a more concrete outline/plan for the project will be helpful. I think we all have ideas in our heads as to what we want this to be but we don't fully understand each others plans. Hopefully this will help with that. I also think it would be nice if we all write up our own outlines here along with comments on each others and then we can come to a consensus. We can then update the plan accordingly. This way, we can all be on the same page.
 
 
