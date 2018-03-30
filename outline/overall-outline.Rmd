@@ -1,0 +1,100 @@
+---
+title: "Overall Outline"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+I (Andrew) think having a more concrete outline/plan for the project will be helpful. I think we all have ideas in our heads as to what we want this to be but we don't fully understand each others plans. Hopefully this will help with that. I also think it would be nice if we all write up our own outlines here along with comments on each others and then we can come to a consensus. We can then update the plan accordingly. This way, we can all be on the same page.
+
+
+### Andrew's Plan
+
+Since the due date will probably come faster than we think (at least that typically happens for me with finals or projects), I think we should focus on having only a few videos. If we have time for more we can add those as well but I don't want to get in over our heads any more than we already have. 
+
+Also, after our discussions with each other and Dr. Roman, I think it would be best if we focus on implementation. We should still talk about the theory, but not spend too much time on it. I'm thinking about the level we had in our first video. Most of the time can be on implementation via bsts. I also think we should have a bit more about the prior and posterior but more of a "the Kalman filter is used" and "MCMC algorithm X is used" than the details of the math.
+
+
+
+That being said, here's my idea. I tried to be specific to give as clear of a picture as I can.
+
+#### Video 1
+
+This will be a general overview of what the videos will cover and give a brief background of time series (more of a refresher than an introduction).
+
+* Intro scene like what we have already
+* Overview of what the video series will be about
+    + Tutorial on implementing BSTS using the bsts package
+    + Based on "Predicting the Present..."
+    + Brief background on time series in general
+    + Introduction to structural time series (frequentist)
+    + BSTS (aka Bayesian aspects of structural time series)
+    + Implementing BSTS models with the bsts package
+* Background on time series
+    + What is a time series (with pictures and examples)
+    + ARMA models 
+        * maybe just an AR(1) and MA(1) to keep it simple
+        * pictures illustrating each
+        * relevant R package(s)
+        * provide a reference
+        
+#### Video 2
+
+This will be about structural time series in both classical and Bayesian frameworks.
+
+* structural time series models
+    + local level model with picture
+    + local linear trend model with picture
+    + seasonal model with picture
+    + with regression component? 
+        * maybe part of general model and just say that it can be done?
+    + general state space model
+* bayesian aspects
+    + prior (without regression)
+    + posterior (without regression)
+        * probably just give the algorithm name and maybe a reference
+        * i think this is where the Kalman filter comes in
+    + regression prior
+        * maybe try to give explanation without formulas although this may be harder than with them
+    + regression posterior
+        * again, probably just give the name of the algorithm
+    
+
+#### Video 3
+
+This will be the implementation video.
+
+* Gibraltar SST data
+    + data description
+    + reference Argovis
+    + data plot
+* for each model from video 3
+    + give equation again as reminder
+    + fit model
+    + component plots
+    + forecasting
+    + analysis (i.e. is it a reasonable model)
+* regression data (still need to find. we can probably use Google like they did but I don't think we should use the same data)
+    + data description
+    + data plot
+* regression model
+    + review regression prior as a reminder
+    + fit model
+    + component plots
+    + forecasting
+    + analysis
+* summary
+    + review models covered
+    + review important bsts functions
+    + give other bsts functions that might be useful
+    + suggest next steps
+    
+
+Hopefully this is roughly what you were both thinking as well. We might need to break videos 2 and 3 into multiple videos so each one isn't too long. For example, for video 2 we can do one video on structural models and another on the Bayesian aspects. For video 3 we can do one video with the Gibraltar data and one with regression data.
+
+
+
+
+
