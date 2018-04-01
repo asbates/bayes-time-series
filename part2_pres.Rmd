@@ -1,0 +1,86 @@
+---
+title: "Adventures in Bayesian Structural Time Series"
+author: "Andrew Bates, Josh Gloyd, Tyler Tucker"
+urlcolor: blue
+output: beamer_presentation
+theme: 'dnd'
+#colortheme: 'dndcolors'
+#fonttheme: 'dndfonts'
+---
+
+
+## Outline
+
+> - Structural Time Series Models:
+>     - Local level model
+>     - Local linear trend model
+>     - Models with seasonal component
+>     - Models with regression component
+> - Bayesian Structural Time Series 
+>     - Prior
+>     - Posterior
+
+<!-- new slide -->
+
+## Structural Time Series 
+
+> - Also called State Space Models
+> - Data comes from unobserved variable called the  **state space**
+> - We model the state space instead of the observed data directly
+
+### Local Level Model
+
+- $y_t$: observed data
+- $\mu_t$: latent state
+
+\begin{align*}
+y_t &= \mu_t + \varepsilon_t  &\varepsilon_t \sim N(0,\sigma^2_{\varepsilon}) \\
+\mu_{t+1} &= \mu_t + \xi_t  &\xi_t \sim N(0, \sigma^2_{\xi}) 
+\end{align*}
+
+<!-- new slide -->
+
+## Local Level Model
+
+- will have plot here
+
+<!-- new slide -->
+
+## Structural Time Series
+
+### Local Linear Trend Model
+
+- $y_t, \mu_t$: same as before
+- $\nu_t$: slope (additional state component)
+
+\begin{align*}
+y_t &= \mu_t + \varepsilon_t  &\varepsilon_t \sim N(0, \sigma_{\varepsilon}^2) \\
+\mu_{t+1} &= \mu_t + \nu_t + \xi_t  &\xi_t \sim N(0, \sigma_{\xi}^2) \\
+\nu_{t+1} &= \nu_t + \zeta_t  &\zeta_t \sim N(0, \sigma_{\zeta}^2)
+\end{align*}
+
+<!-- new slide -->
+
+## Local Linear Trend Model
+
+- will have picture here
+
+
+<!-- new slide -->
+
+## Structural Time Series
+
+### Basic Structural Model
+
+- Local Trend Model with seasonal component
+- $\mu_t$: local linear trend model
+- $\tau_t$: seasonal component
+
+\begin{align*}
+&y_t = \mu_t + \tau_t + \zeta_t  &\zeta_t \sim N(0, \sigma^2_{\zeta})
+\end{align*}
+
+
+
+
+
