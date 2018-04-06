@@ -1,5 +1,6 @@
 ---
 title: "Adventures in Bayesian Structural Time Series"
+subtitle: "Part 2: Structural Time Series"
 author: "Andrew Bates, Josh Gloyd, Tyler Tucker"
 urlcolor: blue
 output: beamer_presentation
@@ -9,6 +10,7 @@ theme: 'dnd'
 ---
 
 
+
 ## Outline
 
 > - Structural Time Series Models:
@@ -16,9 +18,6 @@ theme: 'dnd'
 >     - Local linear trend model
 >     - Models with seasonal component
 >     - Models with regression component
-> - Bayesian Structural Time Series 
->     - Prior
->     - Posterior
 
 <!-- new slide -->
 
@@ -28,21 +27,28 @@ theme: 'dnd'
 > - Data comes from unobserved variable called the  **state space**
 > - We model the state space instead of the observed data directly
 
+
+<!-- new slide-->
+
+## Structural Time Series
+
 ### Local Level Model
 
 - $y_t$: observed data
-- $\mu_t$: latent state
+- $\mu_t$: unobserved state
 
 \begin{align*}
 y_t &= \mu_t + \varepsilon_t  &\varepsilon_t \sim N(0,\sigma^2_{\varepsilon}) \\
 \mu_{t+1} &= \mu_t + \xi_t  &\xi_t \sim N(0, \sigma^2_{\xi}) 
 \end{align*}
 
+
 <!-- new slide -->
 
 ## Local Level Model
 
 - will have plot here
+
 
 <!-- new slide -->
 
@@ -70,15 +76,59 @@ y_t &= \mu_t + \varepsilon_t  &\varepsilon_t \sim N(0, \sigma_{\varepsilon}^2) \
 
 ## Structural Time Series
 
-### Basic Structural Model
+### Local Trend With Seasonality
 
-- Local Trend Model with seasonal component
-- $\mu_t$: local linear trend model
+- $\mu_t$: local linear trend
 - $\tau_t$: seasonal component
+    - $S$ dummy variables (1 for each season)
 
 \begin{align*}
-&y_t = \mu_t + \tau_t + \zeta_t  &\zeta_t \sim N(0, \sigma^2_{\zeta})
+&y_t = \mu_t + \tau_t + \varepsilon_t  &\zeta_t \sim N(0, \sigma^2_{\varepsilon}) \\
+&\tau_t = \sum_{s=1}^{S-1} \tau_{t-s} + \omega_t  &\tau_t \sim N(0, \sigma^2_{\omega})
 \end{align*}
+
+
+<!-- new slide -->
+
+## Local Trend With Seasonality
+
+- will have picture here
+
+
+<!-- new slide -->
+
+## Structural Time Series
+
+### Local Trend With Regression
+
+- $\mu_t$: local linear trend 
+- $\tau_t$: seasonal component
+- $\beta_t^Tx_t$: regression component
+
+\begin{align*}
+&y_t = \mu_t + \tau_t + \beta_t^Tx_t  + \varepsilon_t &\varepsilon_t \sim N(0, \sigma^2_{\varepsilon})
+\end{align*}
+
+
+<!-- new slide-->
+
+
+## Structural Time Series
+
+- (1): observation equation
+- (2): transition equation
+
+### General Form
+
+- $y_t$: data
+- $\alpha_t$: state component
+
+\begin{align}
+y_t &= Z_t'\alpha_t + \varepsilon_t  &\varepsilon_t \sim N(0, H_t)  \\
+\alpha_{t+1} &= T_t\alpha_t + R_t\eta_t  &\eta_t \sim N(0, Q_t) 
+\end{align}
+
+
 
 
 
