@@ -1,0 +1,92 @@
+---
+title: "Adventures in Bayesian Structural Time Series"
+subtitle: "Part 3: Structural Time Series in Bayesian Context"
+author: "Andrew Bates, Josh Gloyd, Tyler Tucker"
+urlcolor: blue
+header-includes:
+  - \usepackage{themes/beamerthemednd}
+output: 
+  beamer_presentation:
+    incremental: true
+#theme: 'dnd'
+#colortheme: 'dndcolors'
+#fonttheme: 'dndfonts'
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+## Outline
+
+ - Without Regression:
+     - Prior
+     - Posterior
+ - With Regression:
+     - Prior
+     - Posterior
+
+
+<!-- new slide-->
+
+
+## Spike and Slab Prior
+
+- Consider coefficients fixed through time
+    - If not, include as state variables
+- **Spike**: prior for probability of regression coefficients being zero
+- **Slab**: prior on nonzero regression coefficients and variance
+
+<!-- new slide -->
+
+## Spike and Slab Prior
+
+### Spike
+
+- $\gamma_k = 1$ if $\beta_k \neq 0$. $\gamma_k = 0$ if $\beta_k = 0$
+- $\beta_{\gamma}$: subset of $\beta$s with $\beta_k \neq 0$
+- Independent Bernoulli prior:
+\[\gamma \sim \prod_{i=1}^K \pi_k^{\gamma_k} (1-\pi_k)^{1-\gamma_k}\]
+
+
+<!-- new slide -->
+
+
+## Spike and Slab Prior
+
+### Slab
+
+- $\Omega^{-1}$: symmetric matrix
+    - $\Omega_{\gamma}^{-1}$: submatrix corresponding to $\gamma_k = 1$
+- Conjugate prior:
+\begin{align*}
+&\beta_{\gamma}\big|\sigma_{\varepsilon}^2, \gamma \sim N(b_{\gamma}, \sigma_{\varepsilon}^2\Omega_{\gamma}) 
+& \frac{1}{\sigma_{\varepsilon}^2}\big|\gamma \sim \mathrm{Gamma}\left(\frac{v}{2}, \frac{ss}{2}\right)
+\end{align*}
+
+
+<!-- new slide -->
+
+
+## Spike and Slab Prior
+
+### Full Prior
+
+\[ f(\beta, \gamma, \sigma_{\varepsilon}^2) = f(\beta_{\gamma}|\gamma, \sigma_{\varepsilon}^2)f(\sigma_{\varepsilon}^2|\gamma)f(\gamma)\]
+
+
+## Specifying Spike and Slab Prior
+
+- $ss$, $v$: prior sum of squares and prior sample size
+    - Expected $R^2$, expected model size
+- $\pi_k$: inclusion probability for regression coefficients
+- $\Omega^{-1}$: based on design matrix $X$
+    - $\Omega^{-1} = \frac{k}{n}X^TX$
+
+
+<!-- new slide -->
+
+## Spike and Slab Posterior
+
+

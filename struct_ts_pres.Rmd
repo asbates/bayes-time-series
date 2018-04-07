@@ -11,6 +11,9 @@ output: beamer_presentation
 #fonttheme: 'dndfonts'
 ---
 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
 
 
 ## Outline
@@ -20,6 +23,7 @@ output: beamer_presentation
 >     - Local linear trend model
 >     - Models with seasonal component
 >     - Models with regression component
+
 
 <!-- new slide -->
 
