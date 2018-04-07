@@ -26,6 +26,17 @@ knitr::opts_chunk$set(echo = FALSE)
  - With Regression:
      - Prior
      - Posterior
+     
+<!-- new slide -->
+
+## Prior and Posterior Without Regression
+
+- Prior
+    - Specify distribution on parameters (variances)
+- Posterior
+    - Kalman filter and Kalman smoother
+    - Markov Chain Monte Carlo
+    - See Durbin and Koopman: Time Series Analysis by State Space Methods for details
 
 
 <!-- new slide-->
@@ -73,7 +84,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ### Full Prior
 
-\[ f(\beta, \gamma, \sigma_{\varepsilon}^2) = f(\beta_{\gamma}|\gamma, \sigma_{\varepsilon}^2)f(\sigma_{\varepsilon}^2|\gamma)f(\gamma)\]
+\[ p(\beta, \gamma, \sigma_{\varepsilon}^2) = p(\beta_{\gamma}|\gamma, \sigma_{\varepsilon}^2)p(\sigma_{\varepsilon}^2|\gamma)f(\gamma)\]
 
 
 ## Specifying Spike and Slab Prior
@@ -87,6 +98,43 @@ knitr::opts_chunk$set(echo = FALSE)
 
 <!-- new slide -->
 
+
 ## Spike and Slab Posterior
+
+### Posterior of $\beta$ and $\sigma_{\varepsilon}^2$ given $\gamma, y^*$
+
+- $Z_t^*$: observation matrix $Z_t$ with $\beta^Tx_t = 0$
+- $y_t^* = y_t - Z_t^{*^T}\alpha_t$
+- $y^* = (y_1^*, y_2^*, \ldots, y_n^*)^T$
+
+- \begin{align*}
+&\beta_{\gamma}\big|\sigma_{\varepsilon}, \gamma, y^* \sim N(\tilde{\beta}_{\gamma}, \sigma_{\varepsilon}^2V_{\gamma})
+& \frac{1}{\sigma_{\varepsilon}^2}\big|\gamma,y^* \sim \mathrm{Gamma}\left(\frac{N}{2}, \frac{SS_{\gamma}}{2}\right)
+\end{align*}
+- $V_{\gamma}^{-1} = (X^TX)_{\gamma} + \Omega_{\gamma}^{-1}$
+- $\tilde{\beta}_{\gamma} = V_{\gamma}(X_{\gamma}^Ty^* + \Omega_{\gamma}^{-1} b_{\gamma})$
+- $N = v + n$
+- $SS_{\gamma} = ss + y^{*^T} y^* + b_{\gamma}^T\Omega_{\gamma}^{-1}b_{\gamma} - \tilde{\beta}_{\gamma}^TV_{\gamma}^{-1}\tilde{\beta}_{\gamma}$
+
+
+<!-- new slide -->
+
+## Spike and Slab Posterior
+
+### Posterior of $\gamma$ given $y^*$:
+\[\gamma\big|y^* \sim C(y^*) \frac{|\Omega_{\gamma}^{-1}|^{1/2}}{|V_{\gamma}^{-1}|^{1/2}} \frac{p(\gamma)}{SS_{\gamma}^{N/2 - 1}}\]
+
+
+<!-- new slide -->
+
+## Posterior Sampling
+
+- Combination of:
+    - stochastic Kalman smoother
+    - MCMC:
+        - stochastic search variable selection
+        - Gibbs sampler
+
+
 
 
