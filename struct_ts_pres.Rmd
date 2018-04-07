@@ -3,8 +3,10 @@ title: "Adventures in Bayesian Structural Time Series"
 subtitle: "Part 2: Structural Time Series"
 author: "Andrew Bates, Josh Gloyd, Tyler Tucker"
 urlcolor: blue
+header-includes:
+  - \usepackage{themes/beamerthemednd}
 output: beamer_presentation
-theme: 'dnd'
+#theme: 'dnd'
 #colortheme: 'dndcolors'
 #fonttheme: 'dndfonts'
 ---
