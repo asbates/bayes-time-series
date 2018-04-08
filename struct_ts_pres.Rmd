@@ -5,33 +5,36 @@ author: "Andrew Bates, Josh Gloyd, Tyler Tucker"
 urlcolor: blue
 header-includes:
   - \usepackage{themes/beamerthemednd}
-output: beamer_presentation
+output: 
+  beamer_presentation:
+    incremental: true
 #theme: 'dnd'
 #colortheme: 'dndcolors'
 #fonttheme: 'dndfonts'
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(echo = FALSE, fig.align = 'center', out.width = '95%',
+                      message = FALSE)
 ```
 
 
 ## Outline
 
-> - Structural Time Series Models:
->     - Local level model
->     - Local linear trend model
->     - Models with seasonal component
->     - Models with regression component
+- Structural Time Series Models:
+    - Local level model
+    - Local linear trend model
+    - Models with seasonal component
+    - Models with regression component
 
 
 <!-- new slide -->
 
 ## Structural Time Series 
 
-> - Also called State Space Models
-> - Data comes from unobserved variable called the  **state space**
-> - We model the state space instead of the observed data directly
+- Also called State Space Models
+- Data comes from unobserved variable called the  **state space**
+- We model the state space instead of the observed data directly
 
 
 <!-- new slide-->
@@ -43,7 +46,7 @@ knitr::opts_chunk$set(echo = FALSE)
 - $y_t$: observed data
 - $\mu_t$: unobserved state
 
-\begin{align*}
+- \begin{align*}
 y_t &= \mu_t + \varepsilon_t  &\varepsilon_t \sim N(0,\sigma^2_{\varepsilon}) \\
 \mu_{t+1} &= \mu_t + \xi_t  &\xi_t \sim N(0, \sigma^2_{\xi}) 
 \end{align*}
@@ -53,7 +56,24 @@ y_t &= \mu_t + \varepsilon_t  &\varepsilon_t \sim N(0,\sigma^2_{\varepsilon}) \\
 
 ## Local Level Model
 
-- will have plot here
+```{r}
+ll_sim <- function(n = 100, sigma = c(10, 5)){
+  sig_eps <- sigma[1]
+  sig_xi <- sigma[2]
+  y <- numeric(n)
+  mu <- numeric(n)
+  mu[1] <- rnorm(1, sd = sig_xi)
+  for(t in 1:n){
+    mu[t+1] <- mu[t] + rnorm(1, sd = sig_xi)
+    y[t] <- mu[t] + rnorm(1, sd = sig_eps)
+  }
+  return(ts(y))
+}
+
+y <- ll_sim()
+plot(y, main = 'Simulated Local Level Model')
+```
+
 
 
 <!-- new slide -->
@@ -65,7 +85,7 @@ y_t &= \mu_t + \varepsilon_t  &\varepsilon_t \sim N(0,\sigma^2_{\varepsilon}) \\
 - $y_t, \mu_t$: same as before
 - $\nu_t$: slope (additional state component)
 
-\begin{align*}
+- \begin{align*}
 y_t &= \mu_t + \varepsilon_t  &\varepsilon_t \sim N(0, \sigma_{\varepsilon}^2) \\
 \mu_{t+1} &= \mu_t + \nu_t + \xi_t  &\xi_t \sim N(0, \sigma_{\xi}^2) \\
 \nu_{t+1} &= \nu_t + \zeta_t  &\zeta_t \sim N(0, \sigma_{\zeta}^2)
@@ -75,7 +95,29 @@ y_t &= \mu_t + \varepsilon_t  &\varepsilon_t \sim N(0, \sigma_{\varepsilon}^2) \
 
 ## Local Linear Trend Model
 
-- will have picture here
+```{r}
+set.seed(42)
+llt_sim <- function(n = 100, sigma = c(10, 10, 10)){
+  sig_eps <- sigma[1]
+  sig_xi <- sigma[2]
+  sig_zeta <- sigma[3]
+  y <- numeric(n)
+  mu <- numeric(n)
+  nu <- numeric(n)
+  mu[1] <- rnorm(1, sd = sig_xi)
+  nu[1] <- rnorm(1, sd = sig_zeta)
+  for(t in 1:n){
+    nu[t+1] <- nu[t] + rnorm(1, sd = sig_zeta)  # trend
+    mu[t+1] <- mu[t] + nu[t] + rnorm(1, sd = sig_xi)  # level
+    y[t] <- mu[t] + rnorm(1, sd = sig_eps)
+  }
+  return(ts(y))
+}
+
+y <- llt_sim()
+plot(y, main = 'Simulated Local Linear Trend Model')
+```
+
 
 
 <!-- new slide -->
@@ -88,7 +130,7 @@ y_t &= \mu_t + \varepsilon_t  &\varepsilon_t \sim N(0, \sigma_{\varepsilon}^2) \
 - $\tau_t$: seasonal component
     - $S$ dummy variables (1 for each season)
 
-\begin{align*}
+- \begin{align*}
 &y_t = \mu_t + \tau_t + \varepsilon_t  &\zeta_t \sim N(0, \sigma^2_{\varepsilon}) \\
 &\tau_t = \sum_{s=1}^{S-1} \tau_{t-s} + \omega_t  &\tau_t \sim N(0, \sigma^2_{\omega})
 \end{align*}
@@ -98,20 +140,25 @@ y_t &= \mu_t + \varepsilon_t  &\varepsilon_t \sim N(0, \sigma_{\varepsilon}^2) \
 
 ## Local Trend With Seasonality
 
-- will have picture here
+```{r}
+library(readr)
+gilbralter <- read_csv("data/gilbraltersimple.csv")  
+gilb <- ts(gilbralter$tempMean, start=c(2004,1,13), end=c(2017, 11, 25), frequency=30)
+plot(gilb, main = 'Gibralter Sea Surface Temperature', ylab = 'SST')
+```
 
 
 <!-- new slide -->
 
 ## Structural Time Series
 
-### Local Trend With Regression
+### Local Trend With Seasonality and Regression
 
 - $\mu_t$: local linear trend 
 - $\tau_t$: seasonal component
 - $\beta_t^Tx_t$: regression component
 
-\begin{align*}
+- \begin{align*}
 &y_t = \mu_t + \tau_t + \beta_t^Tx_t  + \varepsilon_t &\varepsilon_t \sim N(0, \sigma^2_{\varepsilon})
 \end{align*}
 
@@ -121,20 +168,19 @@ y_t &= \mu_t + \varepsilon_t  &\varepsilon_t \sim N(0, \sigma_{\varepsilon}^2) \
 
 ## Structural Time Series
 
-- (1): observation equation
-- (2): transition equation
+- (1): **observation equation**
+- (2): **transition equation**
+
 
 ### General Form
 
 - $y_t$: data
-- $\alpha_t$: state component
+- $\alpha_t$: state variable
 
-\begin{align}
+- \begin{align}
 y_t &= Z_t'\alpha_t + \varepsilon_t  &\varepsilon_t \sim N(0, H_t)  \\
 \alpha_{t+1} &= T_t\alpha_t + R_t\eta_t  &\eta_t \sim N(0, Q_t) 
 \end{align}
-
-
 
 
 

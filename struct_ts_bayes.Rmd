@@ -44,7 +44,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ## Spike and Slab Prior
 
-- Consider coefficients fixed through time
+- Consider regression coefficients fixed through time
     - If not, include as state variables
 - **Spike**: prior for probability of regression coefficients being zero
 - **Slab**: prior on nonzero regression coefficients and variance
