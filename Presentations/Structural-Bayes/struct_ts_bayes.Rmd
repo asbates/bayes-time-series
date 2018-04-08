@@ -17,6 +17,7 @@ output:
 knitr::opts_chunk$set(echo = FALSE)
 ```
 
+<!-- slide 1 -->
 
 ## Outline
 
@@ -27,7 +28,7 @@ knitr::opts_chunk$set(echo = FALSE)
      - Prior
      - Posterior
      
-<!-- new slide -->
+<!-- slide 2 -->
 
 ## Prior and Posterior Without Regression
 
@@ -39,7 +40,7 @@ knitr::opts_chunk$set(echo = FALSE)
     - See Durbin and Koopman: Time Series Analysis by State Space Methods for details
 
 
-<!-- new slide-->
+<!-- slide 3 -->
 
 
 ## Spike and Slab Prior
@@ -49,7 +50,7 @@ knitr::opts_chunk$set(echo = FALSE)
 - **Spike**: prior for probability of regression coefficients being zero
 - **Slab**: prior on nonzero regression coefficients and variance
 
-<!-- new slide -->
+<!-- slide 4 -->
 
 ## Spike and Slab Prior
 
@@ -61,7 +62,7 @@ knitr::opts_chunk$set(echo = FALSE)
 \[\gamma \sim \prod_{i=1}^K \pi_k^{\gamma_k} (1-\pi_k)^{1-\gamma_k}\]
 
 
-<!-- new slide -->
+<!-- slide 5 -->
 
 
 ## Spike and Slab Prior
@@ -77,7 +78,7 @@ knitr::opts_chunk$set(echo = FALSE)
 \end{align*}
 
 
-<!-- new slide -->
+<!-- slide 6 -->
 
 
 ## Spike and Slab Prior
@@ -96,7 +97,7 @@ knitr::opts_chunk$set(echo = FALSE)
     - $\Omega^{-1} = \frac{k}{n}X^TX$
 
 
-<!-- new slide -->
+<!-- slide 7 -->
 
 
 ## Spike and Slab Posterior
@@ -117,7 +118,7 @@ knitr::opts_chunk$set(echo = FALSE)
 - $SS_{\gamma} = ss + y^{*^T} y^* + b_{\gamma}^T\Omega_{\gamma}^{-1}b_{\gamma} - \tilde{\beta}_{\gamma}^TV_{\gamma}^{-1}\tilde{\beta}_{\gamma}$
 
 
-<!-- new slide -->
+<!-- slide 8 -->
 
 ## Spike and Slab Posterior
 
@@ -125,7 +126,7 @@ knitr::opts_chunk$set(echo = FALSE)
 \[\gamma\big|y^* \sim C(y^*) \frac{|\Omega_{\gamma}^{-1}|^{1/2}}{|V_{\gamma}^{-1}|^{1/2}} \frac{p(\gamma)}{SS_{\gamma}^{N/2 - 1}}\]
 
 
-<!-- new slide -->
+<!-- slide 9 -->
 
 ## Posterior Sampling
 

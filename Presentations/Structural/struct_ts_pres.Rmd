@@ -19,6 +19,8 @@ knitr::opts_chunk$set(echo = FALSE, fig.align = 'center', out.width = '95%',
 ```
 
 
+<!-- slide 1 -->
+
 ## Outline
 
 - Structural Time Series Models:
@@ -28,7 +30,7 @@ knitr::opts_chunk$set(echo = FALSE, fig.align = 'center', out.width = '95%',
     - Models with regression component
 
 
-<!-- new slide -->
+<!-- slide 2 -->
 
 ## Structural Time Series 
 
@@ -37,7 +39,7 @@ knitr::opts_chunk$set(echo = FALSE, fig.align = 'center', out.width = '95%',
 - We model the state space instead of the observed data directly
 
 
-<!-- new slide-->
+<!-- slide 3 -->
 
 ## Structural Time Series
 
@@ -52,7 +54,7 @@ y_t &= \mu_t + \varepsilon_t  &\varepsilon_t \sim N(0,\sigma^2_{\varepsilon}) \\
 \end{align*}
 
 
-<!-- new slide -->
+<!-- slide 4 -->
 
 ## Local Level Model
 
@@ -76,7 +78,7 @@ plot(y, main = 'Simulated Local Level Model')
 
 
 
-<!-- new slide -->
+<!-- slide 5 -->
 
 ## Structural Time Series
 
@@ -91,7 +93,8 @@ y_t &= \mu_t + \varepsilon_t  &\varepsilon_t \sim N(0, \sigma_{\varepsilon}^2) \
 \nu_{t+1} &= \nu_t + \zeta_t  &\zeta_t \sim N(0, \sigma_{\zeta}^2)
 \end{align*}
 
-<!-- new slide -->
+
+<!-- slide 6 -->
 
 ## Local Linear Trend Model
 
@@ -120,7 +123,7 @@ plot(y, main = 'Simulated Local Linear Trend Model')
 
 
 
-<!-- new slide -->
+<!-- slide 7 -->
 
 ## Structural Time Series
 
@@ -136,7 +139,7 @@ plot(y, main = 'Simulated Local Linear Trend Model')
 \end{align*}
 
 
-<!-- new slide -->
+<!-- slide 8 -->
 
 ## Local Trend With Seasonality
 
@@ -148,7 +151,7 @@ plot(gilb, main = 'Gibralter Sea Surface Temperature', ylab = 'SST')
 ```
 
 
-<!-- new slide -->
+<!-- slide 9 -->
 
 ## Structural Time Series
 
@@ -163,7 +166,7 @@ plot(gilb, main = 'Gibralter Sea Surface Temperature', ylab = 'SST')
 \end{align*}
 
 
-<!-- new slide-->
+<!-- slide 10 -->
 
 
 ## Structural Time Series
