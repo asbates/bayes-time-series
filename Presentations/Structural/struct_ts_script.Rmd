@@ -34,13 +34,81 @@ The simplest of these models is called the *local level model* (-> Slide 4)
 
 ### Slide 4
 
-Here, we use $y_t$ to denote the data and
+Here, we use $y_t$ to denote the data 
 
-(->) $\mu_t$ to denote the unobserved state. The model looks like this
+(->) and $\mu_t$ to denote the unobserved state. The model looks like this
 
-(->)
+(->) $\mu_t$ is the level of the series at time $t$. One way to think of this is in comparison to linear regression: $\mu_t$ is sort of like the intercept in linear regression, but where it varies through time. 
 
+At any given time point, the level $\mu$ is the same as the previous time, plus a noise term, $\xi_t$. What we actually observe is $y_t$, which is the level at time $t$ plus some more noise.
 
+The parameters in this model are the variances of the error terms: $\sigma_{\varepsilon}^2$ and $\sigma_{\xi}^2$. Given an initial value for $\mu_t$, say $\mu_0$, the values of $\mu_t$ and $y_t$ depend on the variances of the error terms.
+
+A time series following this model might look something like this (-> Slide 5)
+
+### Slide 5
+
+The local level model is the simplest structural time series model. As we will see shortly, more complex models are basically just extensions of the local level model. Because of this, it's important to make sure you understand the local level model before moving on to more complicated models.
+
+The simplest way to extend the local level model is to include a trend component along with the level component. This is called the local linear trend model (-> Slide 6)
+
+### Slide 6
+
+Here, we consider $y_t$ and $\mu_t$ to be the same as in the local level model. 
+
+(->) We add an additional term, $\nu_t$, that acts like a slope term. The model looks like this
+
+(->) Note here that $\mu$ depends on the previous value of the slope, along with the previous value of $\mu$. And, since we have an additional state component, $\nu_t$, we have an additional noise term $\zeta_t$. Again, the parameters here are the variances of the three error terms. The local linear trend model might look something like this (-> Slide 7)
+
+### Slide 7
+
+The next thing we might want to add is a seasonal component (-> Slide 9)
+
+### Slide 8
+
+Here, we consider $\mu_t$ to be the local linear trend model we just discussed.
+
+(->) $\tau_t$ is the seasonal component
+
+(->) We model $\tau_t$ using dummy variables for each season. The model looks like this
+
+(->) Since we consider $\mu_t$ to be a local linear trend model, there are actually 4 parameters here. One for the measurement noise, that goes with $y_t$, one for the level, one for the trend, and one for the seasonal component $\tau_t$. If we consider $\mu_t$ to be the local level model, then we would have just three parameters because there would be no trend term. Basically, we have a noise term and corresponding variance for each of our state components. This model might look something like this (-> Slide 10)
+
+### Slide 10
+
+This is the sea surface temperature around Gibralter; we will see this data again in our implementation videos using R.
+
+We might also want to include a regression component in our model (-> Slide 11)
+
+### Slide 11
+
+We consider $\mu_t$ to be a local linear trend as before.
+
+(->) and $\tau_t$ is our seasonal component.
+
+(->) The regression component is $\beta_t^Tx_t$. The model looks like this
+
+(->) We write in this way for simplicity. Since $\mu_t$ is a linear trend model, there are 2 more equations associated with it, that we saw earlier. Likewise for $\tau_t$. If we wrote out all the equations though, it would look a bit daunting. Just remember that there is not just one equation associated with this model.
+
+Note that we have allowed for $\beta$ to vary in time. This is not necessary because we could consider $\beta$ fixed and add it to the equation for $y_t$. If we do this, then the regression part is not part of the state component, as we have it written in this particular model.
+
+So far we have discussed several structural time series models. Hopefully by now you have an idea of what they are and how we can use them to caputure a variety of situations. Before we move on to the Bayesian aspects of structural time series though, we would like to present the general form of a structural time series model (-> Slide 12)
+
+### Slide 12
+
+Generally, a structural time series has two equations. They are called the *observation equation*, (->) and the *transition equation*. In the local level model, these would be the equations for $y_t$ and $\mu_t$ respectively.
+
+Here, (->) $y_t$ is the data, just like the previous models. But now we use (->) $\alpha_t$ to denote the state variable.
+
+$\alpha_t$ can include a level, trend, seasonal, or regression component. We can include or exclude these components as we see fit. For example, if we want a local level model, then $\alpha_t$ is the same as what we called $\mu_t$ in the local level model equations. The general form  of a state space model looks like this (->)
+
+This might look a bit more complex than some of the previous models, but writing the model like this, with matrices, saves us from writing an equation for the level, *and* the trend, *and* the seasonal component, *and* any other components, which could be a lot of equations depending on how complex the model is.
+
+Just like in the previous models, the parameters here are $H_t$ and $Q_t$, which are the variances of the error terms $\varepsilon_t$ and $\eta_t$
+
+Now that we have a handle on structural time series models, we are ready to see how the Bayesian framework can be incorporated.
+
+You may be weary from this part of the jouney, but fret naught! There is only one more formidable stage before you enter the last part of your adventure and begin to master the ability to *use* Bayesian structural time series.
 
 
 

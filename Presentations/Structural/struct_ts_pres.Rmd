@@ -13,13 +13,13 @@ output:
 #fonttheme: 'dndfonts'
 ---
 
-```{r setup, include=FALSE}
+```{r setup, include=FALSE, echo = FALSE}
 knitr::opts_chunk$set(echo = FALSE, fig.align = 'center', out.width = '95%',
                       message = FALSE)
 ```
 
 
-<!-- slide 1 -->
+<!-- slide 2 -->
 
 ## Outline
 
@@ -30,7 +30,7 @@ knitr::opts_chunk$set(echo = FALSE, fig.align = 'center', out.width = '95%',
     - Models with regression component
 
 
-<!-- slide 2 -->
+<!-- slide 3 -->
 
 ## Structural Time Series 
 
@@ -39,7 +39,7 @@ knitr::opts_chunk$set(echo = FALSE, fig.align = 'center', out.width = '95%',
 - We model the state space instead of the observed data directly
 
 
-<!-- slide 3 -->
+<!-- slide 4 -->
 
 ## Structural Time Series
 
@@ -54,7 +54,7 @@ y_t &= \mu_t + \varepsilon_t  &\varepsilon_t \sim N(0,\sigma^2_{\varepsilon}) \\
 \end{align*}
 
 
-<!-- slide 4 -->
+<!-- slide 5 -->
 
 ## Local Level Model
 
@@ -78,7 +78,7 @@ plot(y, main = 'Simulated Local Level Model')
 
 
 
-<!-- slide 5 -->
+<!-- slide 6 -->
 
 ## Structural Time Series
 
@@ -94,7 +94,7 @@ y_t &= \mu_t + \varepsilon_t  &\varepsilon_t \sim N(0, \sigma_{\varepsilon}^2) \
 \end{align*}
 
 
-<!-- slide 6 -->
+<!-- slide 7 -->
 
 ## Local Linear Trend Model
 
@@ -123,7 +123,7 @@ plot(y, main = 'Simulated Local Linear Trend Model')
 
 
 
-<!-- slide 7 -->
+<!-- slide 8 -->
 
 ## Structural Time Series
 
@@ -135,11 +135,11 @@ plot(y, main = 'Simulated Local Linear Trend Model')
 
 - \begin{align*}
 &y_t = \mu_t + \tau_t + \varepsilon_t  &\zeta_t \sim N(0, \sigma^2_{\varepsilon}) \\
-&\tau_t = \sum_{s=1}^{S-1} \tau_{t-s} + \omega_t  &\tau_t \sim N(0, \sigma^2_{\omega})
+&\tau_t = - \sum_{s=1}^{S-1} \tau_{t-s} + \omega_t  &\tau_t \sim N(0, \sigma^2_{\omega})
 \end{align*}
 
 
-<!-- slide 8 -->
+<!-- slide 9 -->
 
 ## Local Trend With Seasonality
 
@@ -151,7 +151,7 @@ plot(gilb, main = 'Gibralter Sea Surface Temperature', ylab = 'SST')
 ```
 
 
-<!-- slide 9 -->
+<!-- slide 10 -->
 
 ## Structural Time Series
 
@@ -166,7 +166,7 @@ plot(gilb, main = 'Gibralter Sea Surface Temperature', ylab = 'SST')
 \end{align*}
 
 
-<!-- slide 10 -->
+<!-- slide 11 -->
 
 
 ## Structural Time Series
