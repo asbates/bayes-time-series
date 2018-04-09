@@ -1,0 +1,10 @@
+---
+title: "BSTS Part 3 Script"
+output: pdf_document
+---
+
+### Slide 1
+
+Welcome back! We hope your journey so far has been rewarding. As we said in your previous adventure, this stage of your journey will be one of the most challenging. But worry not. For once you have mastered this
+
+
