@@ -21,6 +21,7 @@ We only briefly cover this as our main focus is the case where we do have a regr
 (->) and obtaining the posterior distribution. (-> Slide 4)
 
 
+
 ### Slide 4
 
 Assuming we don't have a regression component in our model, for example, the local level model, then our parameters are the variances of the error terms.
@@ -79,6 +80,48 @@ Now that we know what the priors are, let's discuss how we choose specific prior
 That takes care of the prior, so now we are ready to move on to the posterior. (-> Slide 10)
 
 ### Slide 10
+
+Again, we need a little notation to set things up. Let $Z_t^*$ denote the observation matrix $Z_t$ with $\beta^Tx_t$ set to zero.
+
+(->) Let $y_t^*$ be the data $y_t$ with $Z_t^{*^T}\alpha_t$ subtracted out.
+
+(->) Finally, let $y^*$ be the vector containing $y_t^*$ for $t = 1$ to $n$.
+
+(->) Then the posterior distributions of $\beta_{\gamma}$ and $\frac{1}{\sigma_{\varepsilon}^2}$ are as follows.
+
+$\beta_{\gamma}$ given $\sigma{\varepsilon}$, $\gamma$, and $y^*$, follows a normal distribution with mean vector $\tilde{\beta}_{\gamma}$ and covariance matrix $\sigma_{\varepsilon}^2V_{\gamma}$. Additionally, $\frac{1}{\sigma_{\varepsilon}^2}$ given $\gamma$ and $y^*$ folows a Gamma distribution with shape $\frac{N}{2}$ and rate $\frac{SS_{\gamma}}{2}$. The parameters of each of these distributions are as follows.
+
+(->) $V_{\gamma}^{-1}$ is $(X^TX)_{\gamma} + \Omega_{\gamma}^{-1}$.
+
+(->) $\tilde{\beta}_{\gamma}$ is $V_{\gamma}(X_{\gamma}^Ty^* + \Omega_{\gamma}^{-1} b_{\gamma})$.
+
+(->) $N$ is $v + n$.
+
+(->) and $SS_{\gamma}$ is $ss + y^{*^T} y^* + b_{\gamma}^T\Omega_{\gamma}^{-1}b_{\gamma} - \tilde{\beta}_{\gamma}^TV_{\gamma}^{-1}\tilde{\beta}_{\gamma}$
+
+(-> Slide 11)
+
+### Slide 11
+
+And the posterior of $\gamma$ is here. (-> Slide 12)
+
+### Slide 12
+
+To obtain a sample from the posterior distribution, we use a combination of 
+
+(->) a stochastic Kalman smoother
+
+(->) and a Markov Chain Monte Carlo algorithm.
+
+(->) The algorithm is called stochastic search variable selection,
+
+(->) which is a Gibbs sampling algorithm.
+
+
+Note that you don't need to worry about implementing this as the bsts package will do this for you.
+
+
+Congratulations! The most strenuous part of your journey is over. Now that you understand the mysterious beast that is Bayesian structural time series, you are ready to complete your journey by learning how to implement what you have learned so far.
 
 
 
