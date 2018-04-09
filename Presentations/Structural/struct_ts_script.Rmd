@@ -108,7 +108,7 @@ Just like in the previous models, the parameters here are $H_t$ and $Q_t$, which
 
 Now that we have a handle on structural time series models, we are ready to see how the Bayesian framework can be incorporated.
 
-You may be weary from this part of the jouney, but fret naught! There is only one more formidable stage before you enter the last part of your adventure and begin to master the ability to *use* Bayesian structural time series.
+You may be weary from this part of the jouney, but fret naught! There is only one more formidable stage before you enter the last part of your adventure and learn to harness the power of Bayesian structural time series for your future endeavors.
 
 
 
