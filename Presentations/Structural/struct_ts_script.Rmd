@@ -9,7 +9,7 @@ Welcome traveler! I hope you are ready to embark on the second stage of your adv
 
 Before we begin to unravel the mysteries of *Bayesian* Structural Time Series, we must first understand Structural Time Series (-> Slide 2).
 
-### Slide 2
+### Slide 3
 
 On this stage of the adventure, we will discuss Structural Time Series models.  We do not enter the Bayesian context yet. Here, we consider structural models from the classical, or frequentist, perspective. Why you ask? Because Structural Time Series Models are the foundation upon which Bayesian Structural Time Series is built (as you hopefully guessed from the titles). In this video we will discuss several Structural Time Series models including:
 

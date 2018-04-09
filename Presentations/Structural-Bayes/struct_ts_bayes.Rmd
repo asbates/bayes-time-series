@@ -30,14 +30,13 @@ knitr::opts_chunk$set(echo = FALSE)
      
 <!-- slide 2 -->
 
-## Prior and Posterior Without Regression
+## Without Regression
 
 - Prior
     - Specify distribution on parameters (variances)
 - Posterior
     - Kalman filter and Kalman smoother
     - Markov Chain Monte Carlo
-    - See Durbin and Koopman: Time Series Analysis by State Space Methods for details
 
 
 <!-- slide 3 -->
@@ -85,7 +84,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ### Full Prior
 
-\[ p(\beta, \gamma, \sigma_{\varepsilon}^2) = p(\beta_{\gamma}|\gamma, \sigma_{\varepsilon}^2)p(\sigma_{\varepsilon}^2|\gamma)f(\gamma)\]
+\[ p(\beta, \gamma, \sigma_{\varepsilon}^2) = p(\beta_{\gamma}|\gamma, \sigma_{\varepsilon}^2)p(\sigma_{\varepsilon}^2|\gamma)p(\gamma)\]
 
 
 ## Specifying Spike and Slab Prior
