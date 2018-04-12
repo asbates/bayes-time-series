@@ -64,3 +64,14 @@ plot(lts_pred, plot.original = 90)
 
 
 # -------- model comparison -------
+
+# cumulative absolute one-step-ahead prediction error
+# see paper for more info
+CompareBstsModels(model.list = list(
+  level = ll_fit, trend = llt_fit, season = lts_fit))
+
+
+
+
+
+
