@@ -14,7 +14,53 @@ output:
 ---
 
 ```{r setup, include=FALSE, echo = FALSE}
-knitr::opts_chunk$set(echo = FALSE, fig.align = 'center', out.width = '95%',
-                      message = FALSE)
+knitr::opts_chunk$set(fig.align = 'center', out.width = '95%',
+                      message = FALSE, cache = TRUE)
 ```
+
+
+<!-- slide 3 -->
+
+## Outline
+
+- SST Data
+
+- Use `bsts` for
+    - Fit
+        - local level
+        - local linear trend model
+        - local trend with seasonality
+    - Posterior distribution
+    - Forecast
+    - Model Comparison
+    
+<!-- slide 4 -->
+    
+## SST Data
+
+- Sea Surface Temperature near Gibraltar
+- Collected every 12 days
+- January 2004 to November 2017 ($n = 401$)
+- Obtained from [Argovis](http://argovis.com/map)
+
+    
+<!-- slide 5 -->
+
+## SST Data
+
+```{r, echo = FALSE}
+library(readr)
+library(bsts) # also loads BoomSpikeSlab, Boom, MASS, zoo, xts
+
+
+gilbralter <- read_csv("data/gilbraltersimple.csv")
+gilt <- ts(gilbralter$tempMean, start=c(2004,1,13),
+           end=c(2017, 11, 25), frequency=30)
+plot(gilt, main='SST of Gilbralter region',
+     xlab='Date',
+     ylab='Temperature (C)')
+```
+
+
+<!-- slide 6 -->
 
