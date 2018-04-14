@@ -105,7 +105,7 @@ We could also easily produce similar plots as with the local level model. All we
 
 Here are the forecasts for the local linear trend model. Just like with the local level model, we forecast one year ahead and plot the last three years of the original series.
 
-From this plot, it is obvious that the local linear trend model does a terrible job. (->)
+The first few forecasts seem reasonable in that they are increasing. This is what we would expect based on the plot of the original series and the patterns it exhibits. However, the error grows very quickly so anything beyond the first few forecasts aren't very trustworthy.(-> Slide 14)
 
 ### Slide 14
 
@@ -127,9 +127,17 @@ We also see from the seasonal component plot that this model seems to be capturi
 
 ### Slide 16
 
-This looks a lot better than our previous models. The forecast intervals are much narrower here. They do grow with time but this is to be expected. Remember, the blue line is the median of the predictive distribution. We can see that this model is doing a much better job of capturing the general pattern of our series.
+This looks a lot better than our previous models. The forecast intervals are much narrower here. They do grow with time but this is to be expected. Remember, the blue line is the median of the predictive distribution. We can see that this model is doing a much better job of capturing the general pattern of our series. (-> Slide 17)
 
+### Slide 17
 
+The *bsts* also provides a function that is useful for comparing several models. We use the *CompareBstsModels* function by passing a list containing all the models we want to compare. In this case, we compare the 3 models we have seen so far: the local level, the local linear trend, and the local linear trend with seasonality.
+
+The bottom plot is the SST data. The top plot gives the cumulative absolute one-step-ahead prediction error for each of the models. The local level model is accumulating error in a linear fashion. The local trend model is as well, but with smaller error. The local trend with seasonality model has a jump early on but then settles down and accumulates error at about the same rate as the local linear trend.
+
+Based on this plot we might be tempted to use the local linear trend as our final model because it has the lowest cumulative error. But this is a plot of the error accumulated at each time point in our original series. We still need to consider the forecasts beyond the endpoint of the data. 
+
+Based on the forecast plots for each model, the linear trend with seasonality does a much better job at capturing the patterns evident in the SST data. And it also has the lowest forecast errors. Even though the cumulative error is not the lowest, the forecast error is. Because of this, we would use the local trend with seasonality as our final model.
 
 
 

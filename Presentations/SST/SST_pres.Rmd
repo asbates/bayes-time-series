@@ -227,6 +227,7 @@ lts_fit <- bsts(gilt, state.specification = lts_ss,
 plot(lts_fit, 'components')
 ```
 
+
 <!-- slide 16 -->
 
 ## Forecasts
@@ -236,4 +237,14 @@ lts_pred <- predict(lts_fit, horizon = 30)
 plot(lts_pred, plot.original = 90)
 ```
 
+
+
+<!-- slide 17 -->
+
+## Model Comparison
+
+```{r}
+CompareBstsModels(model.list = list(
+  level = ll_fit, trend = llt_fit, season = lts_fit))
+```
 
