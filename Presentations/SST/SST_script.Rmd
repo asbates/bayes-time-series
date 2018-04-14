@@ -62,6 +62,24 @@ Remember that the local level model looks like this. $y_t$ is our data, and $\mu
 To fit models using *bsts*, we first need to construct the state. We start by creating an empty list to hold our state specification. Then we use *AddLocalLevel* to say that we want to add a level component to our state.
 
 To fit the model, we use the function *bsts*. Along with our time series, we pass our state specification, which we just created, and the number of MCMC iterations we want from the posterior distribution. Here we only use 1,000 iterations. But this is just because we want to save time. In practice you would want a much larger posterior sample.
+(-> Slide 8)
+
+### Slide 8
+
+Once we fit our model and simulate draws from the posterior, we might be interested in plotting the results. *bsts* provides several different plotting methods. 
+
+If we use *plot* with a bsts object, what we get is a plot of the posterior mean conditional on the data. The points on the plot are our original data.
+(-> Slide 9)
+
+### Slide 9
+
+If we specify *components* in the plot function, we get a plot of the posterior of the state components. In this case, the local level. Based on this plot, it seems like the local level is doing a pretty good job of modeling the SST data. (-> Slide 10)
+
+### Slide 10
+
+Another option we can give to the *plot* function is *residuals*. This of course plots the residuals. The shading here is the distribution of the residuals at each time point. Darker regions have higher density.
+
+
 
 
 

@@ -103,3 +103,39 @@ ll_fit <- bsts(gilt, state.specification = ll_ss,
                niter = 1e3)
 ```
 
+
+<!-- slide 8 -->
+
+## Model Plotting
+
+```{r, echo = FALSE}
+ll_ss <- list()
+ll_ss <- AddLocalLevel(state.specification = ll_ss,
+                       y = gilt)
+ll_fit <- bsts(gilt, state.specification = ll_ss,
+               niter = 1e3, ping = 0)
+```
+
+
+```{r}
+plot(ll_fit)
+```
+
+<!-- slide 9 -->
+
+## Model Plotting
+
+```{r}
+plot(ll_fit, 'components')
+```
+
+
+<!-- slide 10 -->
+
+## Model Plotting
+
+```{r}
+plot(ll_fit, 'residuals')
+```
+
+
