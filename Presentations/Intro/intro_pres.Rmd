@@ -13,3 +13,29 @@ output:
 #fonttheme: 'dndfonts'
 ---
 
+<!-- slide 3 -->
+
+## Overview
+
+- Structural time series
+- Bayesian approach to structural time series
+- Implementation via `bsts` in `R`
+
+
+<!-- slide 4 -->
+
+## Useful Resources
+
+- Predicting the Present with Bayesian Structural Time Series
+
+- An Introduction to State Space Time Series Analysis
+
+- Time Series Analysis By State Space Methods
+
+- `bsts` documentation
+
+- Adventures in BSTS GitHub
+
+
+
+

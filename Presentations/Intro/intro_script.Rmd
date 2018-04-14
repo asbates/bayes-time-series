@@ -3,4 +3,31 @@ title: "BSTS Part 1 Script"
 output: pdf_document
 ---
 
+### Slide 1
+
+Hello fellow traveler! I can see by the look on your face that you want to know about how Baysean statistics can be applied to time series analysis. Well, great news! That is exactly what this adventure entails.
+
+### Slide 3
+
+This adventure is divided into 3 stages. We first learn the mysteries of structural time series analysis.
+
+(->) Then we will learn about structural time series in the Bayesian framework. Be warned! These will be the most arduous part of your journey. There will be a great deal of math. But, you cannot truly unravel the secrets of Bayesian structural time series without it.
+
+(->) Once we understand how Bayesian structural time series ticks, we will battle this beast using the power of R! (-> Slide 4)
+
+
+### Slide 4
+
+But before your adventure begins, we would like to point out some resources. Much of what we will talk about is based on the paper "Predicting the Present with Bayesian Structural Time Series" by Steven L. Scott and Hal Varian.
+
+(->) For more background on structural time series see "An Introduction to State Space Time Series Analysis" by Commandeur and Koopman.
+
+(->) Or, for the truly adventurous, see "Time Series Analysis By State Space Methods" by Durbin and Koopman.
+
+(->) We will be using the *bsts* R package so you might want to see the documentation.
+
+(->) You may also be interested in the GitHub repository for this tutorial series. There you can find all the presentations, code, and data that we use. A link to this is provided in the description below.
+
+
+
 
