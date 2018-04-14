@@ -40,7 +40,7 @@ knitr::opts_chunk$set(fig.align = 'center', out.width = '95%',
 
 - Sea Surface Temperature near Gibraltar
 - Collected every 12 days
-- January 2004 to November 2017 ($n = 401$)
+- January 2004 to November 2017
 - Obtained from [Argovis](http://argovis.com/map)
 
     

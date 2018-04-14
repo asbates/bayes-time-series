@@ -1,0 +1,62 @@
+---
+title: "BSTS Part 3 Script"
+output: pdf_document
+---
+
+### Slide 1
+
+Congratulations! You've made it to the moment that you were surely waiting for. Now that you understand the mysteries behind Bayesian structural time series, you will begin to master the practice of Bayseian structural time series.
+
+Here is what you have to look forward to in this part of your adventure (-> Slide 3)
+
+### Slide 3
+
+First, we will talk about the SST data that you have seen in previous videos.
+
+(->) Then we will see how to use the R package *bsts*.
+
+(->) We will see how to fit the structural time series models we saw in previous videos. This will be demonstrated for
+
+(->) the local level model.
+
+(->) the local linear trend model.
+
+(->) and the local linear trend with seasonality model.
+
+
+(->) We will also see how to obtain and plot the posterior distribution,
+
+(->) forecast,
+
+(->) and compare the three models.
+
+We encourage you follow along! To do so, see the links in the description below. (-> Slide 4)
+
+### Slide 4
+
+The data we will be using in this video is the sea surface temperature of the first 30 meters around Gibraltar.
+
+(->) The data was collected every 12 days by instruments floating in the water.
+
+(->) Here, we consider the sea surface temperature from January 2004 to November 2017.
+
+(->) The data was obtained from the website Argovis. At Argovis.com, you can access data taken from instruments floating in the ocean all over the world. Tyler has even written a Python API so you can obtain data from your favorite ocean region!
+
+(-> Slide 5)
+
+### Slide 5
+
+This is what the SST data we will be working with looks like. Most of the temperatures lie between about 17 and 23 degress celcius and there is obviously some seasonality here. Let's see how we can fit some Bayesian structural time series to this data.
+
+
+
+
+
+
+
+
+
+
+
+
+
