@@ -105,7 +105,30 @@ We could also easily produce similar plots as with the local level model. All we
 
 Here are the forecasts for the local linear trend model. Just like with the local level model, we forecast one year ahead and plot the last three years of the original series.
 
-From this plot, it is obvious that the local linear trend model does a terrible job.
+From this plot, it is obvious that the local linear trend model does a terrible job. (->)
+
+### Slide 14
+
+Let's try a local trend with seasonality. Since the SST data has obvious seasonality, we probably should have started with this. But we wanted to illustrate how to fit models starting with the simplest case first.
+
+Remeber what this model looks like. Here we consider $\mu_t$ to be a local linear trend and $\tau_t$ is our seasonal component.
+
+The local linear trend component is specified just like before. But since we want a seasonal component, we need to add that separately using the *AddSeasonal* function. The argument *nseasons* is the capital s in the equation for $\tau$. For the SST data, this is 30.
+
+Let's see what the posteriors of the 2 state components look like. (-> Slide 15)
+
+### Slide 15
+
+Just like before we pass our fitted object to the *plot* function and specify that we want to plot the components. *bsts* will automatically plot all our state components.
+
+From the trend plot, we see a bit of a rise around time 100. This is evident in the plot of the original data corresponding to about 2007. It would be nice if the times on our component plots matched the original series but for some reason *bsts* was not plotting the original time stamps for us.
+
+We also see from the seasonal component plot that this model seems to be capturing the seasonality of the original series. Let's see what our forecasts look like. (-> Slide 16)
+
+### Slide 16
+
+This looks a lot better than our previous models. The forecast intervals are much narrower here. They do grow with time but this is to be expected. Remember, the blue line is the median of the predictive distribution. We can see that this model is doing a much better job of capturing the general pattern of our series.
+
 
 
 

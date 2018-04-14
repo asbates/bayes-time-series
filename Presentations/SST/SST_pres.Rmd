@@ -190,3 +190,50 @@ plot(llt_pred, plot.original = 90)
 ```
 
 
+<!-- slide 14 -->
+
+## Model Fitting
+
+### Local Trend With Seasonality
+
+\begin{align*}
+&y_t = \mu_t + \tau_t + \varepsilon_t  &\zeta_t \sim N(0, \sigma^2_{\varepsilon}) \\
+&\tau_t = - \sum_{s=1}^{S-1} \tau_{t-s} + \omega_t  &\tau_t \sim N(0, \sigma^2_{\omega})
+\end{align*}
+
+### 
+```{r, eval = FALSE}
+lts_ss <- list()
+lts_ss <- AddLocalLinearTrend(lts_ss, y = gilt)
+lts_ss <- AddSeasonal(lts_ss, gilt, nseasons = 30)
+lts_fit <- bsts(gilt, state.specification = lts_ss,
+                niter = 1e3)
+```
+
+
+<!-- slide 15 -->
+
+## Components
+
+```{r, echo = FALSE}
+lts_ss <- list()
+lts_ss <- AddLocalLinearTrend(lts_ss, y = gilt)
+lts_ss <- AddSeasonal(lts_ss, gilt, nseasons = 30)
+lts_fit <- bsts(gilt, state.specification = lts_ss,
+                niter = 1e3, ping = 0)
+```
+
+```{r}
+plot(lts_fit, 'components')
+```
+
+<!-- slide 16 -->
+
+## Forecasts
+
+```{r}
+lts_pred <- predict(lts_fit, horizon = 30)
+plot(lts_pred, plot.original = 90)
+```
+
+
