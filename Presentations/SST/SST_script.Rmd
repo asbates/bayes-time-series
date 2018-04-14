@@ -55,7 +55,13 @@ Before we start fitting models, we need to do a little setting up. First, we loa
 We read in the data, then convert it to a time series object. We set the frequency to 30 because there are approximately 30 twelve day periods in a year. Then we produce the plot shown on the previous slide. (-> Slide 7)
 
 
+### Slide 7
 
+Remember that the local level model looks like this. $y_t$ is our data, and $\mu_t$ is the state component.
+
+To fit models using *bsts*, we first need to construct the state. We start by creating an empty list to hold our state specification. Then we use *AddLocalLevel* to say that we want to add a level component to our state.
+
+To fit the model, we use the function *bsts*. Along with our time series, we pass our state specification, which we just created, and the number of MCMC iterations we want from the posterior distribution. Here we only use 1,000 iterations. But this is just because we want to save time. In practice you would want a much larger posterior sample.
 
 
 
