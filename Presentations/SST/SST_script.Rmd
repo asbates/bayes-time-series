@@ -36,7 +36,7 @@ We encourage you follow along! To do so, see the links in the description below.
 
 The data we will be using in this video is the sea surface temperature of the first 30 meters around Gibraltar.
 
-(->) The data was collected every 12 days by instruments floating in the water.
+(->) The temperature was recorded every day by instruments floating in the ocean. These temperatures were then averaged over 12 day periods.
 
 (->) Here, we consider the sea surface temperature from January 2004 to November 2017.
 
