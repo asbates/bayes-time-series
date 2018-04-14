@@ -1,0 +1,15 @@
+---
+title: "Adventures in Bayesian Structural Time Series"
+subtitle: "Part 1: Introduction"
+author: "Andrew Bates, Josh Gloyd, Tyler Tucker"
+urlcolor: blue
+header-includes:
+  - \usepackage{themes/beamerthemednd}
+output: 
+  beamer_presentation:
+    incremental: true
+#theme: 'dnd'
+#colortheme: 'dndcolors'
+#fonttheme: 'dndfonts'
+---
+
