@@ -94,8 +94,18 @@ From this plot we can see that the local level model doesn't seem adequate. The 
 
 ### Slide 12
 
+Recall the local linear trend model which we present here. $y_t$ is our data, $\mu_t$ is the local level, and $\nu_t$ is the local trend.
 
+Fitting this model is just like fitting the local level model. The only difference here is that we use *AddLocalLinearTrend* instead of *AddLocalLevel*.
 
+We could also easily produce similar plots as with the local level model. All we need to do is pass the local linear trend fitted object instead of the local level object. However, we will just look at forecasts for this model.
+(-> Slide 13)
+
+### Slide 13
+
+Here are the forecasts for the local linear trend model. Just like with the local level model, we forecast one year ahead and plot the last three years of the original series.
+
+From this plot, it is obvious that the local linear trend model does a terrible job.
 
 
 
