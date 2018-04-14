@@ -57,11 +57,13 @@ We read in the data, then convert it to a time series object. We set the frequen
 
 ### Slide 7
 
-Remember that the local level model looks like this. $y_t$ is our data, and $\mu_t$ is the state component.
+Remember that the local level model looks like this. $y_t$ is our data, and $\mu_t$ is the state component. In this case the level of the series at time $t$.
 
 To fit models using *bsts*, we first need to construct the state. We start by creating an empty list to hold our state specification. Then we use *AddLocalLevel* to say that we want to add a level component to our state.
 
-To fit the model, we use the function *bsts*. Along with our time series, we pass our state specification, which we just created, and the number of MCMC iterations we want from the posterior distribution. Here we only use 1,000 iterations. But this is just because we want to save time. In practice you would want a much larger posterior sample.
+To fit the model, we use the function *bsts*. Along with our time series, we pass our state specification and the number of MCMC iterations we want from the posterior distribution. Here we only use 1,000 iterations. But this is just to save time. In practice you would want a much larger posterior sample.
+
+In addition to fitting the model and drawing samples from the posterior, the *bsts* function creates a *bsts* object. A *bsts* object is a list that contains the posterior sample, the state specification, the log likelihood, and many other components we might be interested in.
 (-> Slide 8)
 
 ### Slide 8
