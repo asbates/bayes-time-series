@@ -70,7 +70,7 @@ In addition to fitting the model and drawing samples from the posterior, the *bs
 
 Once we fit our model and simulate draws from the posterior, we might be interested in plotting the results. *bsts* provides several different plotting methods. 
 
-If we use *plot* with a bsts object, what we get is a plot of the posterior mean conditional on the data. The points on the plot are our original data.
+If we use *plot* with a bsts object, what we get is a plot of the posterior mean, conditional on the data. The points on the plot are our original data.
 (-> Slide 9)
 
 ### Slide 9
@@ -79,12 +79,20 @@ If we specify *components* in the plot function, we get a plot of the posterior 
 
 ### Slide 10
 
-Another option we can give to the *plot* function is *residuals*. This of course plots the residuals. The shading here is the distribution of the residuals at each time point. Darker regions have higher density.
+Another option we can give to the *plot* function is *residuals*. This of course plots the residuals. The shading here is the density of the residuals at each time point.(->)
 
 
+### Slide 11
 
+bsts also provides a predict method to compute forecasts. The *horizon* argument specifies how far ahead we want to forecast. In this case we forecast 30 time steps ahead, which corresponds to one year.
 
+To see how our forecasts are doing, we can pass our *bsts prediction* object to the plot function. The *plot.original* argument plots the original series along with the forecasts. The default value is *TRUE* which will plot the entire original series. We can also specify a numerical value as we did here. The value of 90 here means only the last 3 years of the series are plotted since there are about 30 observations per year.
 
+The blue line indicates the median of the predictive distribution and the green lines indicate the prediction interval. The default is a 95% prediction interval. Just like with the residuals plot, the gray shading is the density.
+
+From this plot we can see that the local level model doesn't seem adequate. The forecasts are essentially a flat line which doesn't caputure the seasonality in the series. We also see that the forecast intervals are very wide. We can try another model to see if it can provide better forecasts. (-> Slide 12)
+
+### Slide 12
 
 
 

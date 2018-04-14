@@ -139,3 +139,15 @@ plot(ll_fit, 'residuals')
 ```
 
 
+<!-- slide 11 -->
+
+## Forecasting
+
+```{r}
+ll_pred <- predict(ll_fit, horizon = 30)  
+plot(ll_pred, plot.original = 90)  
+```
+
+
+
+
