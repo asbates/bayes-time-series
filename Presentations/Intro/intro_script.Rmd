@@ -9,11 +9,11 @@ Hello fellow traveler! I can see by the look on your face that you want to know 
 
 ### Slide 3
 
-This adventure is divided into 3 stages. We first learn the mysteries of structural time series analysis.
+This adventure is divided into 2 stages: theory and practice. We first learn the mysteries of structural time series analysis.
 
-(->) Then we will learn about structural time series in the Bayesian framework. Be warned! These will be the most arduous part of your journey. There will be a great deal of math. But, you cannot truly unravel the secrets of Bayesian structural time series without it.
+(->) Then we will learn about structural time series in the Bayesian framework. Be warned! These will be the most arduous part of your journey. There will be a great deal of mathematics. But, you cannot truly unravel the secrets of Bayesian structural time series without it.
 
-(->) Once we understand how Bayesian structural time series ticks, we will battle this beast using the power of R! (-> Slide 4)
+(->) Once we understand how Bayesian structural time series ticks, we will battle this beast using the power of R! This will consist of 2 parts. First we see how to implement BSTS models. Then we will harness the full power of BSTS by including regression terms. (-> Slide 4)
 
 
 ### Slide 4
