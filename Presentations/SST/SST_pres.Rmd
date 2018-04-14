@@ -64,3 +64,20 @@ plot(gilt, main='SST of Gilbralter region',
 
 <!-- slide 6 -->
 
+## Setup
+
+```{r, eval = FALSE}
+library(readr)
+library(bsts) 
+# bsts also loads BoomSpikeSlab, Boom, MASS, zoo, xts
+
+
+gilbralter <- read_csv("data/gilbraltersimple.csv")
+gilt <- ts(gilbralter$tempMean, start=c(2004,1,13),
+           end=c(2017, 11, 25), frequency=30)
+plot(gilt, main='SST of Gilbralter region',
+     xlab='Date',
+     ylab='Temperature (C)')
+```
+
+

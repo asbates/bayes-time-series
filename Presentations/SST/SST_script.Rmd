@@ -46,7 +46,13 @@ The data we will be using in this video is the sea surface temperature of the fi
 
 ### Slide 5
 
-This is what the SST data we will be working with looks like. Most of the temperatures lie between about 17 and 23 degress celcius and there is obviously some seasonality here. Let's see how we can fit some Bayesian structural time series to this data.
+This is what the SST data we will be working with looks like. Most of the temperatures lie between about 17 and 23 degress celcius and there is obviously some seasonality here. Let's see how we can fit some Bayesian structural time series to this data. (-> Slide 6)
+
+### Slide 6
+
+Before we start fitting models, we need to do a little setting up. First, we load *readr* to read in the data, and of course the *bsts* package. Note that *bsts* loads several other packages as well.
+
+We read in the data, then convert it to a time series object. We set the frequency to 30 because there are approximately 30 twelve day periods in a year. Then we produce the plot shown on the previous slide. (-> Slide 7)
 
 
 
