@@ -26,7 +26,65 @@ But before your adventure begins, we would like to point out some resources. Muc
 
 (->) We will be using the *bsts* R package so you might want to see the documentation.
 
-(->) You may also be interested in the GitHub repository for this tutorial series. There you can find all the presentations, code, and data that we use. A link to this is provided in the description below.
+(->) You may also be interested in the GitHub repository for this tutorial series. There you can find all the presentations, code, and data that we use. A link to this is provided in the description below. (-> Slide 5)
+
+
+### Slide 5
+
+Let's begin our journey with a brief review of time series analysis. We assume that you have some familiarity with time series. We try to keep things simple but if you have never seen time series before, you might have a hard time following along. Also note that we assume you are familiar with the basic ideas of Bayesian statistics. If you don't know anything about either of these concepts, you should learn a bit about them and then come back.
+
+A time series is a stochastic process indexed by time.
+
+(->) That is, a collection of random variables with an index set T that we think of as time. We typically consider discrete time processes with T being either the integers or the natural numbers.
+
+(->) An important concept in time series is stationarity. There are several varieties but we usually mean weakly stationary. This is sometimes called covariance stationary or just stationary.
+
+(->) To be stationary, a time series must have a constant mean.
+
+(->) In addition, the covariance between random variables at each time point only depends on the difference in time.
+
+(->) The main issue in time series is that the data is not i.i.d. like we assume for many statistical methods. Sometimes the identical distribution part holds but the independence part doesn't. Sometimes neither of the i's hold. (-> Slide 6)
+
+
+### Slide 6
+
+The classical time series model is the autoregressive moving averge, or ARMA model. The simplest autoregressive model is the AR(1) which looks like this.
+
+(->) Here $e_t$ is the error term which we assume to be i.i.d. with mean zero and variance $\sigma^2$.
+
+(->) And we require the coefficient $\phi$ to be less than one. (-> Slide 7)
+
+
+### Slide 7
+
+An AR(1) process might look like this. (-> Slide 8)
+
+
+### Slide 8
+
+The simplest moving average model is the MA(1). It looks like this.
+
+(->) Again, $e_t$ is the error term here which we assume to be i.i.d. with mean zero and variance $\sigma^2$. (-> Slide 9)
+
+
+### Slide 9
+
+An MA(1) process might look something like this. (-> Slide 10)
+
+
+### Slide 10
+
+The AR(1) and MA(1) models can be extended and combined to form an ARMA model. A general ARMA process is usually written like this.
+
+(->) $\phi(B)$ is the AR part which is a linear combination of previous values of the series $X_t$.
+
+(->) And $\theta(B)$ is the MA part which is a linear combination of previous error terms.
+
+Well, that's it for the time series refresher. If you haven't encountered time series before and had trouble following along you want to study up a bit and come back. Otherwise...
+
+### Slide 11
+
+Glory and reward await those who are brave enough to navigate the trials and tribulations involved in learning BSTS. Come stalwart adventurer! let us explore this dungeon of mysterious treasures. In the following tutorials, we will battle untold horrors and demons together, who guard the secrects of BSTS.
 
 
 

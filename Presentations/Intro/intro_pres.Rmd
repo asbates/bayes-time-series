@@ -13,9 +13,17 @@ output:
 #fonttheme: 'dndfonts'
 ---
 
+
+```{r setup, include=FALSE, echo = FALSE}
+knitr::opts_chunk$set(fig.align = 'center', out.width = '95%')
+```
+
+
+
+
 <!-- slide 3 -->
 
-## Overview
+## The Adventure
 
 - Structural time series
 - Bayesian approach to structural time series
@@ -36,6 +44,80 @@ output:
 
 - Adventures in BSTS GitHub
 
+
+<!-- slide 5 -->
+
+## Time Series Review
+
+- Stochastic process indexed by time 
+    - $\{X_t, \hspace{3pt} t \in \mathbb{T}\}$
+    
+- (weak) Stationarity
+    - $E[X_t] = \mu$
+    - $Cov(X_t, X_{t+k}) = \gamma(k)$
+    
+- Not i.i.d.
+
+
+<!-- slide 6 -->
+
+## ARMA Models
+
+### AR(1)
+
+- \[X_t = \phi X_{t-1} + e_t\]
+- $e_t$ i.i.d. $(0,\sigma^2)$
+- $|\phi| < 1$
+
+
+<!-- slide 7 -->
+
+## AR(1)
+
+```{r, echo = FALSE}
+x <- arima.sim(model = list(ar = 0.42), n = 100, sd = 1)
+plot(x, main = 'Simulated AR(1)')
+```
+
+
+<!-- slide 8 -->
+
+## ARMA Models
+
+### MA(1)
+
+- \[X_t = \theta e_{t-1} + e_t \]
+- $e_t$ i.i.d. $(0, \sigma^2)$
+
+
+<!-- slide 9 -->
+
+## MA(1)
+
+```{r, echo = FALSE}
+x <- arima.sim(model = list(ma = 0.42), n = 100, sd = 1)
+plot(x, main = 'Simulated MA(1)')
+```
+
+
+<!-- slide 10 -->
+
+## ARMA Models
+
+### ARMA(p,q)
+
+- \[\phi(B)X_t = \theta(B)e_t\]
+
+- $\phi(B)X_t = X_t - \phi_1X_{t-1} - \cdots - \phi_pX_{t-p}$
+
+- $\theta(B)e_t = e_t + \theta_1e_{t-1} + \cdots + \theta_qe_{t-q}$
+
+
+<!-- slide 11 -->
+
+##
+
+**Your quest...**
 
 
 
