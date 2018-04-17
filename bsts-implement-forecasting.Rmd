@@ -3,7 +3,7 @@ title: "Implementing BSTS Forecasting"
 author: "Andrew Bates, Josh Gloyd, Tyler Tucker"
 urlcolor: blue
 output: beamer_presentation
-theme: 'dnd'
+theme: '/../dnd'
 #colortheme: 'dndcolors'
 #fonttheme: 'dndfonts'
 ---
