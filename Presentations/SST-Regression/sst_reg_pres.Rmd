@@ -1,0 +1,21 @@
+---
+title: "Adventures in Bayesian Structural Time Series"
+subtitle: "Part 4: Analyzing SST Data With Regression"
+author: "Andrew Bates, Josh Gloyd, Tyler Tucker"
+urlcolor: blue
+header-includes:
+  - \usepackage{themes/beamerthemednd}
+output: beamer_presentation
+#theme: 'dnd'
+#colortheme: 'dndcolors'
+#fonttheme: 'dndfonts'
+---
+
+```{r setup, include=FALSE, echo = FALSE}
+knitr::opts_chunk$set(fig.align = 'center', out.width = '95%',
+                      message = FALSE, cache = TRUE)
+```
+
+
+
+
