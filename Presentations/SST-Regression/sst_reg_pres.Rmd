@@ -37,11 +37,50 @@ knitr::opts_chunk$set(fig.align = 'center', out.width = '95%',
 - January 2004 to November 2017
 - Covariates: depth at 10, 20, ..., 90 meters
 
+## SST Data
+
+```{r, echo = FALSE}
+knitr::include_graphics('images/tempColorChart.png')
+```
 
 
 
 
+## SST Data
 
+```{r, echo = FALSE}
+library(readr)
+library(bsts)
+
+gibraltar <- read_csv("data/gilbralter_time_series_r.csv", 
+                       col_types = cols(startDate = col_skip(), 
+                                        timeIdx = col_skip()))
+names(gibraltar) <- c('SST', '10', '20', '30', '40',
+                      '50', '60', '70', '80', '90')
+gilt <- zooreg(gibraltar, start = c(2004, 1, 1), end = c(2017, 11, 29),
+               frequency = 12)
+plot(gilt$SST, main='SST of Gilbralter region',
+     xlab='date',
+     ylab='Temperature [C]', 
+     ylim=c(15, 26))
+```
+
+
+## Setup
+
+```{r, eval = FALSE}
+library(readr)
+library(bsts)
+
+gib <- read_csv("data/gilbralter_time_series_r.csv",
+                col_types = cols(startDate = col_skip(),
+                                 timeIdx = col_skip()))
+names(gib) <- c('SST', '10', '20', '30', '40',
+                      '50', '60', '70', '80', '90')
+gib <- zooreg(gibraltar, start = c(2004, 1, 1),
+              end = c(2017, 11, 29),
+              frequency = 12)
+```
 
 
 
