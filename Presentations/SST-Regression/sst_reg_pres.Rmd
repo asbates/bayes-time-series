@@ -17,5 +17,33 @@ knitr::opts_chunk$set(fig.align = 'center', out.width = '95%',
 ```
 
 
+<!-- slide  -->
+
+
+## Outline
+
+- SST data with covariates
+- Use `bsts` to
+    - Fit structural model with regression
+    - Regression posterior
+    - Forecast
+    - Custom regresson prior
+    
+
+## SST Data
+
+- Sea Surface Temperature near Gibraltar
+- Aggregated monthly
+- January 2004 to November 2017
+- Covariates: depth at 10, 20, ..., 90 meters
+
+
+
+
+
+
+
+
+
 
 
