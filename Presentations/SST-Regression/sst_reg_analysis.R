@@ -18,4 +18,25 @@ plot(gib$SST, main='SST of Gilbralter region',
 ss <- AddLocalLinearTrend(list(), gib$SST)
 ss <- AddSeasonal(ss, gib$SST, nseasons = 12)
 model1 <- bsts(SST ~., state.specification = ss,
-               data = gib, niter = 1000)
+               data = gib, niter = 1000, ping = 0)
+
+plot(model1, 'components')
+plot(model1, 'coefficients')
+
+apply(model1$coefficients, MARGIN = 2, function(x) mean(x != 0))
+
+newdata <- matrix(0, ncol = 9, nrow = 12)
+newdata[1, ] <- colMeans(gib[, 2:10])
+gib_sd <- apply(gib, 2, sd)
+for(i in 2:12){
+  for(j in 2:9)
+  newdata[i, ] <- newdata[1, ] + rnorm(1, sd = gib_sd[j])
+}
+
+model1_pred <- predict(model1, newdata = newdata, horizon = 12)
+plot(model1_pred, plot.original = 36)
+
+
+
+
+

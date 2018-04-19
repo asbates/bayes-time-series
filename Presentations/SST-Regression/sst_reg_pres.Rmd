@@ -17,7 +17,7 @@ knitr::opts_chunk$set(fig.align = 'center', out.width = '95%',
 ```
 
 
-<!-- slide  -->
+<!-- slide 3 -->
 
 
 ## Outline
@@ -29,6 +29,7 @@ knitr::opts_chunk$set(fig.align = 'center', out.width = '95%',
     - Forecast
     - Custom regresson prior
     
+<!-- slide 4-->
 
 ## SST Data
 
@@ -37,6 +38,8 @@ knitr::opts_chunk$set(fig.align = 'center', out.width = '95%',
 - January 2004 to November 2017
 - Covariates: depth at 10, 20, ..., 90 meters
 
+<!-- slide 5 -->
+
 ## SST Data
 
 ```{r, echo = FALSE}
@@ -44,7 +47,7 @@ knitr::include_graphics('images/tempColorChart.png')
 ```
 
 
-
+<!-- slide 6 -->
 
 ## SST Data
 
@@ -52,19 +55,21 @@ knitr::include_graphics('images/tempColorChart.png')
 library(readr)
 library(bsts)
 
-gibraltar <- read_csv("data/gilbralter_time_series_r.csv", 
+gib <- read_csv("data/gilbralter_time_series_r.csv", 
                        col_types = cols(startDate = col_skip(), 
                                         timeIdx = col_skip()))
-names(gibraltar) <- c('SST', '10', '20', '30', '40',
+names(gib) <- c('SST', '10', '20', '30', '40',
                       '50', '60', '70', '80', '90')
-gilt <- zooreg(gibraltar, start = c(2004, 1, 1), end = c(2017, 11, 29),
+gib <- zooreg(gib, start = c(2004, 1, 1), end = c(2017, 11, 29),
                frequency = 12)
-plot(gilt$SST, main='SST of Gilbralter region',
+plot(gib$SST, main='SST of Gilbralter region',
      xlab='date',
      ylab='Temperature [C]', 
      ylim=c(15, 26))
 ```
 
+
+<!-- slide 7 -->
 
 ## Setup
 
@@ -82,6 +87,62 @@ gib <- zooreg(gibraltar, start = c(2004, 1, 1),
               frequency = 12)
 ```
 
+
+<!-- slide 8 -->
+
+## Model Fitting
+
+```{r}
+ss <- AddLocalLinearTrend(list(), gib$SST)
+ss <- AddSeasonal(ss, gib$SST, nseasons = 12)
+model1 <- bsts(SST ~., state.specification = ss,
+               data = gib, niter = 1000, ping = 0)
+```
+
+
+<!-- slide 9 -->
+
+## Model Plotting
+
+```{r}
+plot(model1, 'components')
+```
+
+
+<!-- slide 10 -->
+
+## Model Plotting
+
+```{r}
+plot(model1, 'coefficients')
+```
+
+
+<!-- slide 11 -->
+
+## Forecasting
+
+```{r}
+newdata <- matrix(0, ncol = 9, nrow = 12)
+newdata[1, ] <- colMeans(gib[, 2:10])
+gib_sd <- apply(gib, 2, sd)
+for(i in 2:12){
+  for(j in 2:9)
+  newdata[i, ] <- newdata[1, ] + 
+      rnorm(1, sd = gib_sd[j])
+}
+```
+
+
+<!-- slide 12-->
+
+## Forecasting
+
+```{r}
+model1_pred <- predict(model1, newdata = newdata,
+                       horizon = 12)
+plot(model1_pred, plot.original = 36)
+```
 
 
 
