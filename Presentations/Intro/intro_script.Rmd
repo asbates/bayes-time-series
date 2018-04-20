@@ -26,14 +26,14 @@ But before your adventure begins, we would like to point out some resources. Muc
 
 (->) Or, for the truly adventurous, see "Time Series Analysis By State Space Methods" by Durbin and Koopman.
 
-(->) We will be using the *bsts* R package so you might want to see the documentation.
+(->) For implementing BSTS, we will be using the *bsts* package in R so the package documentation makes for a good reference.
 
-(->) You may also be interested in the GitHub repository for this tutorial series. There you can find all the presentations, code, and data that we use. A link to this is provided in the description below. (-> Slide 5)
+(->) You may also be interested to know a GitHub repository exists for this tutorial series. There you can find all the presentations, code, and data that we use. A link to this is provided in the description below. (-> Slide 5)
 
 
 ### Slide 5
 
-Let's begin our journey with a brief review of time series analysis. We assume that you have some familiarity with time series. We try to keep things simple but if you have never seen time series before, you might have a hard time following along. Also note that we assume you are familiar with the basic ideas of Bayesian statistics. If you don't know anything about either of these concepts, you should learn a bit about them and then come back.
+Let's begin our journey with a brief review of time series analysis. We assume that you already have some familiarity with time series. We try to keep things simple but if you have never seen time series before, you might have a difficult time following along. Also note that we assume you are familiar with the basic ideas of Bayesian statistics. If you don't know anything about either of these concepts, you should learn a bit about them and then come back.
 
 A time series is a stochastic process indexed by time.
 
