@@ -7,7 +7,6 @@ header-includes:
   - \usepackage{themes/beamerthemednd}
 output: 
   beamer_presentation:
-    incremental: true
 #theme: 'dnd'
 #colortheme: 'dndcolors'
 #fonttheme: 'dndfonts'
@@ -25,9 +24,9 @@ knitr::opts_chunk$set(fig.align = 'center', out.width = '95%')
 
 ## The Adventure
 
-- Structural time series
-- Bayesian approach to structural time series
-- Implementation via `bsts` in `R`
+> - Structural time series
+> - Bayesian approach to structural time series
+> - Implementation via `bsts` in `R`
 
 
 <!-- slide 4 -->

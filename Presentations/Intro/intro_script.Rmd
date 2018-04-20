@@ -5,7 +5,7 @@ output: pdf_document
 
 ### Slide 1
 
-Hello fellow traveler! I can see by the look on your face that you want to know about how Baysean statistics can be applied to time series analysis. Well, great news! That is exactly what this adventure entails.
+Hello fellow traveler! I can see by the look on your face that you are ready to know about how Baysean statistics can be applied to time series analysis. Well, great news! That is exactly what you're about to learn on this adventure.
 
 ### Slide 3
 
