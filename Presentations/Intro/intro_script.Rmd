@@ -86,7 +86,7 @@ Well, that's it for the time series refresher. If you haven't encountered time s
 
 ### Slide 11
 
-Glory and reward await those who are brave enough to navigate the trials and tribulations involved in learning BSTS. Come stalwart adventurer! let us explore this dungeon of mysterious treasures. In the following tutorials, we will battle untold horrors and demons together, who guard the secrects of BSTS.
+Glory and reward await those who are brave enough to navigate the trials and tribulations involved in learning BSTS. Come stalwart adventurer! let us explore this dungeon of mysterious treasures. In the following tutorials, we will battle untold horrors and demons together, and as you continue to level up you will gain the strength to take down those who guard the secrects of BSTS.
 
 
 
