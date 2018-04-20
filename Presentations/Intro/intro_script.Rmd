@@ -5,15 +5,17 @@ output: pdf_document
 
 ### Slide 1
 
-Hello fellow traveler! I can see by the look on your face that you want to know about how Baysean statistics can be applied to time series analysis. Well, great news! That is exactly what this adventure entails.
+Hello fellow traveler! I can see by the look on your face that you are ready to know about how Baysean statistics can be applied to time series analysis. Well, great news! That is exactly what you're about to learn on this adventure.
 
 ### Slide 3
 
-This adventure is divided into 2 stages: theory and practice. We first learn the mysteries of structural time series analysis.
+This adventure is divided into 2 stages: theory and practice. 
 
-(->) Then we will learn about structural time series in the Bayesian framework. Be warned! These will be the most arduous part of your journey. There will be a great deal of mathematics. But, you cannot truly unravel the secrets of Bayesian structural time series without it.
+(->) We must first learn the mysteries of structural time series analysis.
 
-(->) Once we understand how Bayesian structural time series ticks, we will battle this beast using the power of R! This will consist of 2 parts. First we see how to implement BSTS models. Then we will harness the full power of BSTS by including regression terms. (-> Slide 4)
+(->) Then we will learn about structural time series in the Bayesian framework. Be warned! This will be the most perilous part of your journey. There will be a great deal of math involved, but you cannot truly unravel the secrets of Bayesian structural time series without it.
+
+(->) Once we understand how Bayesian structural time series ticks, we will be ready to roll initiative and take on this beast using the power of R! This will consist of 2 parts. First we see how to implement BSTS models. Then we will harness the full power of BSTS by including regression terms. (-> Slide 4)
 
 
 ### Slide 4
