@@ -48,14 +48,15 @@ knitr::opts_chunk$set(fig.align = 'center', out.width = '95%')
 
 ## Time Series Review
 
-- Stochastic process indexed by time 
-    - $\{X_t, \hspace{3pt} t \in \mathbb{T}\}$
+
+> - Stochastic process indexed by time 
+>     - $\{X_t, \hspace{3pt} t \in \mathbb{T}\}$
     
-- (weak) Stationarity
-    - $E[X_t] = \mu$
-    - $Cov(X_t, X_{t+k}) = \gamma(k)$
+> - (weak) Stationarity
+>     - $E[X_t] = \mu$
+>     - $Cov(X_t, X_{t+k}) = \gamma(k)$
     
-- Not i.i.d.
+> - Not i.i.d.
 
 
 <!-- slide 6 -->

@@ -33,7 +33,7 @@ But before your adventure begins, we would like to point out some resources. Muc
 
 ### Slide 5
 
-Let's begin our journey with a brief review of time series analysis. We assume that you already have some familiarity with time series. We try to keep things simple but if you have never seen time series before, you might have a difficult time following along. Also note that we assume you are familiar with the basic ideas of Bayesian statistics. If you don't know anything about either of these concepts, you should learn a bit about them and then come back.
+Let's begin our journey with a brief review of time series analysis. We assume that you already have some familiarity with time series. We try to keep things simple but if you have never seen time series before, you might have a difficult time following along. Also note that we assume you are familiar with the basic ideas of Bayesian statistics. If you don't know anything about either of these concepts, you'll have disadvantage and you should probably learn a bit about them before continuing on your quest.
 
 A time series is a stochastic process indexed by time.
 
