@@ -235,8 +235,9 @@ plot(lts_pred, plot.original = 90)
 
 ## Model Comparison
 
-```{r}
-CompareBstsModels(model.list = list(
-  level = ll_fit, trend = llt_fit, season = lts_fit))
+```{r  fig.height=6}
+CompareBstsModels(lwd = 4, model.list = list(
+  level = ll_fit, trend = llt_fit, season = lts_fit),
+  colors = c("forestgreen", "firebrick", "blue4"))
 ```
 

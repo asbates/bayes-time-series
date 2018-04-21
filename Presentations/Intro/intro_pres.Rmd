@@ -34,11 +34,13 @@ knitr::opts_chunk$set(fig.align = 'center', out.width = '95%')
 ## Useful Resources
 
 > - Predicting the Present with Bayesian Structural Time Series
+Steven L. Scott and Hal Varian
 
 > - An Introduction to State Space Time Series Analysis
+Commandeur and Koopman
 
 > - Time Series Analysis By State Space Methods
-
+Durbin and Koopman
 > - `bsts` documentation
 
 > - Adventures in BSTS GitHub
@@ -50,11 +52,13 @@ knitr::opts_chunk$set(fig.align = 'center', out.width = '95%')
 
 
 > - Stochastic process indexed by time 
->     - $\{X_t, \hspace{3pt} t \in \mathbb{T}\}$
+>     $\{X_t, \hspace{3pt} t \in \mathbb{T}\}$
     
 > - (weak) Stationarity
->     - $E[X_t] = \mu$
->     - $Cov(X_t, X_{t+k}) = \gamma(k)$
+
+$$E[X_t] = \mu$$
+
+$$Cov(X_t, X_{t+k}) = \gamma(k)$$
     
 > - Not i.i.d.
 
@@ -65,9 +69,9 @@ knitr::opts_chunk$set(fig.align = 'center', out.width = '95%')
 
 ### AR(1)
 
-- \[X_t = \phi X_{t-1} + e_t\]
-- $e_t$ i.i.d. $(0,\sigma^2)$
-- $|\phi| < 1$
+\[X_t = \phi X_{t-1} + e_t\]
+$e_t$ i.i.d. $(0,\sigma^2)$
+$$|\phi| < 1$$
 
 
 <!-- slide 7 -->
@@ -86,8 +90,8 @@ plot(x, main = 'Simulated AR(1)')
 
 ### MA(1)
 
-- \[X_t = \theta e_{t-1} + e_t \]
-- $e_t$ i.i.d. $(0, \sigma^2)$
+\[X_t = \theta e_{t-1} + e_t \]
+$e_t$ i.i.d. $(0, \sigma^2)$
 
 
 <!-- slide 9 -->
@@ -106,11 +110,11 @@ plot(x, main = 'Simulated MA(1)')
 
 ### ARMA(p,q)
 
-- \[\phi(B)X_t = \theta(B)e_t\]
+\[\phi(B)X_t = \theta(B)e_t\]
 
-- $\phi(B)X_t = X_t - \phi_1X_{t-1} - \cdots - \phi_pX_{t-p}$
+$$\phi(B)X_t = X_t - \phi_1X_{t-1} - \cdots - \phi_pX_{t-p}$$
 
-- $\theta(B)e_t = e_t + \theta_1e_{t-1} + \cdots + \theta_qe_{t-q}$
+$$\theta(B)e_t = e_t + \theta_1e_{t-1} + \cdots + \theta_qe_{t-q}$$
 
 
 <!-- slide 11 -->
