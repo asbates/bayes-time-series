@@ -33,14 +33,15 @@ knitr::opts_chunk$set(fig.align = 'center', out.width = '95%')
 
 ## Useful Resources
 
-> - Predicting the Present with Bayesian Structural Time Series
+> - "Predicting the Present with Bayesian Structural Time Series"
 Steven L. Scott and Hal Varian
 
-> - An Introduction to State Space Time Series Analysis
+> - "An Introduction to State Space Time Series Analysis"
 Commandeur and Koopman
 
-> - Time Series Analysis By State Space Methods
+> - "Time Series Analysis By State Space Methods"
 Durbin and Koopman
+
 > - `bsts` documentation
 
 > - Adventures in BSTS GitHub
