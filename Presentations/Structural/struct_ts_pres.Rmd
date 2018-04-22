@@ -7,7 +7,6 @@ header-includes:
   - \usepackage{themes/beamerthemednd}
 output: 
   beamer_presentation:
-    incremental: true
 #theme: 'dnd'
 #colortheme: 'dndcolors'
 #fonttheme: 'dndfonts'
@@ -19,24 +18,22 @@ knitr::opts_chunk$set(echo = FALSE, fig.align = 'center', out.width = '95%',
 ```
 
 
-<!-- slide 2 -->
-
 ## Outline
 
-- Structural Time Series Models:
-    - Local level model
-    - Local linear trend model
-    - Models with seasonal component
-    - Models with regression component
+> - Structural Time Series Models:
+>     - Local level model
+>     - Local linear trend model
+>     - Models with seasonal component
+>     - Models with regression component
 
 
 <!-- slide 3 -->
 
 ## Structural Time Series 
 
-- Also called State Space Models
-- Data comes from unobserved variable called the  **state space**
-- We model the state space instead of the observed data directly
+> - Also called State Space Models
+> - Data comes from unobserved variable called the  **state space**
+> - We model the state space instead of the observed data directly
 
 
 <!-- slide 4 -->
