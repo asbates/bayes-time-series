@@ -23,8 +23,8 @@ knitr::opts_chunk$set(echo = FALSE, fig.align = 'center', out.width = '95%',
 > - Structural Time Series Models:
 >     - Local level model
 >     - Local linear trend model
->     - Models with seasonal component
->     - Models with regression component
+>     - Models with a seasonal component
+>     - Models with a regression component
 
 
 <!-- slide 3 -->
