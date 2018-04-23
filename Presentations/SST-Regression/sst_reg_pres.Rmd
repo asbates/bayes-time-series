@@ -118,11 +118,14 @@ plot(model1, 'coefficients')
 ```
 
 
-<!-- slide 11 -->
+
+
+<!-- slide 12-->
 
 ## Forecasting
 
-```{r}
+
+```{r, echo = FALSE}
 newdata <- matrix(0, ncol = 9, nrow = 12)
 newdata[1, ] <- colMeans(gib[, 2:10])
 gib_sd <- apply(gib, 2, sd)
@@ -134,15 +137,55 @@ for(i in 2:12){
 ```
 
 
-<!-- slide 12-->
-
-## Forecasting
-
 ```{r}
 model1_pred <- predict(model1, newdata = newdata,
                        horizon = 12)
 plot(model1_pred, plot.original = 36)
 ```
+
+
+<!-- slide 13 -->
+
+## Custom Regression Prior
+
+```{r}
+model2 <- bsts(SST ~., state.specification = ss,
+               data = gib, niter = 1000, ping = 0,
+               expected.model.size = 2)
+```
+
+
+<!-- slide 14 -->
+
+## Custom Regression Prior
+
+```{r}
+
+plot(model2, 'coefficients')
+```
+
+
+<!-- slide 15 -->
+
+## Custom Regression Prior
+
+```{r}
+model3 <- bsts(SST ~., state.specification = ss,
+               data = gib, niter = 1000, ping = 0,
+               prior.inclusion.probabilities = 
+                 c(0.01, 0.5, 0.3, 0.3, 0.1, 0.1,
+                   0.1, 0.1, 0.1, 0.1))
+```
+
+
+<!-- slide 16 -->
+
+## Custom Regression Prior
+
+```{r}
+plot(model3, 'coefficients')
+```
+
 
 
 
