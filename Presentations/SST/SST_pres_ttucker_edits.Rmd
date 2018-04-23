@@ -189,8 +189,8 @@ plot(llt_pred, plot.original = 90)
 ### Local Trend With Seasonality
 
 \begin{align*}
-&y_t = \mu_t + \tau_t + \varepsilon_t  &\zeta_t \sim N(0, \sigma^2_{\varepsilon}) \\
-&\tau_t = - \sum_{s=1}^{S-1} \tau_{t-s} + \omega_t  &\tau_t \sim N(0, \sigma^2_{\omega})
+&y_t = \mu_t + \tau_t + \varepsilon_t  &\varepsilon_t \sim N(0, \sigma^2_{\varepsilon}) \\
+&\tau_t = - \sum_{s=1}^{S-1} \tau_{t-s} + \omega_t  &\omega_t \sim N(0, \sigma^2_{\omega})
 \end{align*}
 
 ### 
