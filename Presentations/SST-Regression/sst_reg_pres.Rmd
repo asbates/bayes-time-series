@@ -120,7 +120,7 @@ plot(model1, 'coefficients')
 
 
 
-<!-- slide 12-->
+<!-- slide 11-->
 
 ## Forecasting
 
@@ -144,7 +144,7 @@ plot(model1_pred, plot.original = 36)
 ```
 
 
-<!-- slide 13 -->
+<!-- slide 12 -->
 
 ## Custom Regression Prior
 
@@ -155,7 +155,7 @@ model2 <- bsts(SST ~., state.specification = ss,
 ```
 
 
-<!-- slide 14 -->
+<!-- slide 13 -->
 
 ## Custom Regression Prior
 
@@ -165,7 +165,7 @@ plot(model2, 'coefficients')
 ```
 
 
-<!-- slide 15 -->
+<!-- slide 14 -->
 
 ## Custom Regression Prior
 
@@ -178,7 +178,7 @@ model3 <- bsts(SST ~., state.specification = ss,
 ```
 
 
-<!-- slide 16 -->
+<!-- slide 15 -->
 
 ## Custom Regression Prior
 
