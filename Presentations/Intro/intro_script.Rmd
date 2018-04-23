@@ -5,15 +5,17 @@ output: pdf_document
 
 ### Slide 1
 
-Hello fellow traveler! I can see by the look on your face that you want to know about how Baysean statistics can be applied to time series analysis. Well, great news! That is exactly what this adventure entails.
+Hello fellow traveler! I can see by the look on your face that you are ready to know about how Baysean statistics can be applied to time series analysis. Well, great news! That is exactly what you're about to learn on this adventure.
 
 ### Slide 3
 
-This adventure is divided into 2 stages: theory and practice. We first learn the mysteries of structural time series analysis.
+This adventure is divided into 2 stages: theory and practice. 
 
-(->) Then we will learn about structural time series in the Bayesian framework. Be warned! These will be the most arduous part of your journey. There will be a great deal of mathematics. But, you cannot truly unravel the secrets of Bayesian structural time series without it.
+(->) We must first learn the mysteries of structural time series analysis.
 
-(->) Once we understand how Bayesian structural time series ticks, we will battle this beast using the power of R! This will consist of 2 parts. First we see how to implement BSTS models. Then we will harness the full power of BSTS by including regression terms. (-> Slide 4)
+(->) Then we will learn about structural time series in the Bayesian framework. Be warned! This will be the most perilous part of your journey. There will be a great deal of math involved, but you cannot truly unravel the secrets of Bayesian structural time series without it.
+
+(->) Once we understand how Bayesian structural time series ticks, we will be ready to roll initiative and take on this beast using the power of R! This will consist of 2 parts. First we see how to implement BSTS models. Then we will harness the full power of BSTS by including regression terms. (-> Slide 4)
 
 
 ### Slide 4
@@ -24,14 +26,14 @@ But before your adventure begins, we would like to point out some resources. Muc
 
 (->) Or, for the truly adventurous, see "Time Series Analysis By State Space Methods" by Durbin and Koopman.
 
-(->) We will be using the *bsts* R package so you might want to see the documentation.
+(->) For implementing BSTS, we will be using the *bsts* package in R so the package documentation makes for a good reference.
 
-(->) You may also be interested in the GitHub repository for this tutorial series. There you can find all the presentations, code, and data that we use. A link to this is provided in the description below. (-> Slide 5)
+(->) You may also be interested to know a GitHub repository exists for this tutorial series. There you can find all the presentations, code, and data that we use. A link to this is provided in the description below. (-> Slide 5)
 
 
 ### Slide 5
 
-Let's begin our journey with a brief review of time series analysis. We assume that you have some familiarity with time series. We try to keep things simple but if you have never seen time series before, you might have a hard time following along. Also note that we assume you are familiar with the basic ideas of Bayesian statistics. If you don't know anything about either of these concepts, you should learn a bit about them and then come back.
+Let's begin our journey with a brief review of time series analysis. We assume that you already have some familiarity with time series. We try to keep things simple but if you have never seen time series before, you might have a difficult time following along. Also note that we assume you are familiar with the basic ideas of Bayesian statistics. If you don't know anything about either of these concepts, you'll have disadvantage and you should probably learn a bit about them before continuing on your quest.
 
 A time series is a stochastic process indexed by time.
 
@@ -84,7 +86,7 @@ Well, that's it for the time series refresher. If you haven't encountered time s
 
 ### Slide 11
 
-Glory and reward await those who are brave enough to navigate the trials and tribulations involved in learning BSTS. Come stalwart adventurer! let us explore this dungeon of mysterious treasures. In the following tutorials, we will battle untold horrors and demons together, who guard the secrects of BSTS.
+Glory and reward await those who are brave enough to navigate the trials and tribulations involved in learning BSTS. Come stalwart adventurer! let us explore this dungeon of mysterious treasures. In the following tutorials, we will battle untold horrors and demons together, and as you continue to level up you will gain the strength to take down those who guard the secrects of BSTS.
 
 
 

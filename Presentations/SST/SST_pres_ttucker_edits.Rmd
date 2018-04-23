@@ -1,0 +1,243 @@
+---
+title: "Adventures in Bayesian Structural Time Series"
+subtitle: "Part 3: Analyzing SST Data"
+author: "Andrew Bates, Josh Gloyd, Tyler Tucker"
+urlcolor: blue
+header-includes:
+  - \usepackage{themes/beamerthemednd}
+output: 
+  beamer_presentation:
+    incremental: false
+#theme: 'dnd'
+#colortheme: 'dndcolors'
+#fonttheme: 'dndfonts'
+---
+
+```{r setup, include=FALSE, echo = FALSE}
+knitr::opts_chunk$set(fig.align = 'center', out.width = '90%',
+                      message = FALSE, cache = TRUE)
+```
+
+
+<!-- slide 3 -->
+
+## Outline
+
+- SST data.
+- Model fitting of SST data, whose components include: local level, local linear trend, and seasonal trend.
+- Generating a posterior distribution of our model time series
+- Some heuristic comparisons between the different models.
+
+<!-- slide 4 -->
+
+## SST Data
+
+```{r, echo = FALSE}
+library(readr)
+library(bsts) # also loads BoomSpikeSlab, Boom, MASS, zoo, xts
+
+
+gilbralter <- read_csv("data/gilbraltersimple.csv")
+gilt <- ts(gilbralter$tempMean, start=c(2004,1,13),
+           end=c(2017, 11, 25), frequency=30)
+plot(gilt, main='SST of Gilbralter region',
+     xlab='Date',
+     ylab='Temperature (C)')
+```
+
+<!-- slide 5 -->
+    
+## SST Data
+
+- SST data come from Argo floats
+- Aggregated every 12 days
+- January 2004 to November 2017
+- Obtained from [www.Argovis.com](http://argovis.com/map)
+- Learn more about Argovis by watching a tutorial at [https://www.youtube.com/watch?v=IlNJ0owuTHM&t=0s](https://www.youtube.com/watch?v=IlNJ0owuTHM&t=0s)
+<!-- slide 6 -->
+
+## Setup
+
+```{r, eval = FALSE}
+library(readr)
+library(bsts) 
+# bsts also loads BoomSpikeSlab, Boom, MASS, zoo, xts
+
+
+gilbralter <- read_csv("data/gilbraltersimple.csv")
+gilt <- ts(gilbralter$tempMean, start=c(2004,1,13),
+           end=c(2017, 11, 25), frequency=30)
+plot(gilt, main='SST of Gilbralter region',
+     xlab='Date',
+     ylab='Temperature (C)')
+```
+
+
+<!-- slide 7 -->
+
+## Model Fitting
+
+### Local Level Model
+
+\begin{align*}
+y_t &= \mu_t + \varepsilon_t  &\varepsilon_t \sim N(0,\sigma^2_{\varepsilon}) \\
+\mu_{t+1} &= \mu_t + \xi_t  &\xi_t \sim N(0, \sigma^2_{\xi}) 
+\end{align*}
+
+
+###
+
+```{r, eval = FALSE}
+ll_ss <- list()
+ll_ss <- AddLocalLevel(state.specification = ll_ss,
+                       y = gilt)
+ll_fit <- bsts(gilt, state.specification = ll_ss,
+               niter = 1e3)
+```
+
+
+<!-- slide 8 -->
+
+## Model Plotting
+
+```{r, echo = FALSE}
+ll_ss <- list()
+ll_ss <- AddLocalLevel(state.specification = ll_ss,
+                       y = gilt)
+ll_fit <- bsts(gilt, state.specification = ll_ss,
+               niter = 1e3, ping = 0)
+```
+
+
+```{r}
+plot(ll_fit)
+```
+
+<!-- slide 9 -->
+
+## Model Plotting
+
+```{r}
+plot(ll_fit, 'components')
+```
+
+
+<!-- slide 10 -->
+
+## Model Plotting
+
+```{r}
+plot(ll_fit, 'residuals')
+```
+
+
+<!-- slide 11 -->
+
+## Forecasting
+
+```{r}
+ll_pred <- predict(ll_fit, horizon = 30)  
+plot(ll_pred, plot.original = 90)  
+```
+
+<!-- slide 12 -->
+
+## Model Fitting
+
+### Local Linear Trend Model
+
+\begin{align*}
+y_t &= \mu_t + \varepsilon_t  &\varepsilon_t \sim N(0, \sigma_{\varepsilon}^2) \\
+\mu_{t+1} &= \mu_t + \nu_t + \xi_t  &\xi_t \sim N(0, \sigma_{\xi}^2) \\
+\nu_{t+1} &= \nu_t + \zeta_t  &\zeta_t \sim N(0, \sigma_{\zeta}^2)
+\end{align*}
+
+
+###
+
+```{r, eval = FALSE}
+llt_ss <- list()
+llt_ss <- AddLocalLinearTrend(
+  state.specification = llt_ss, y = gilt)
+llt_fit <- bsts(gilt, state.specification = llt_ss,
+                niter = 1e3)
+```
+
+
+<!-- slide 13 -->
+
+## Forecasts
+
+```{r, echo = FALSE}
+llt_ss <- list()
+llt_ss <- AddLocalLinearTrend(
+  state.specification = llt_ss, y = gilt)
+llt_fit <- bsts(gilt, state.specification = llt_ss,
+                niter = 1e3, ping = 0)
+```
+
+```{r}
+llt_pred <- predict(llt_fit, horizon = 30)
+plot(llt_pred, plot.original = 90)
+```
+
+
+<!-- slide 14 -->
+
+## Model Fitting
+
+### Local Trend With Seasonality
+
+\begin{align*}
+&y_t = \mu_t + \tau_t + \varepsilon_t  &\zeta_t \sim N(0, \sigma^2_{\varepsilon}) \\
+&\tau_t = - \sum_{s=1}^{S-1} \tau_{t-s} + \omega_t  &\tau_t \sim N(0, \sigma^2_{\omega})
+\end{align*}
+
+### 
+```{r, eval = FALSE}
+lts_ss <- list()
+lts_ss <- AddLocalLinearTrend(lts_ss, y = gilt)
+lts_ss <- AddSeasonal(lts_ss, gilt, nseasons = 30)
+lts_fit <- bsts(gilt, state.specification = lts_ss,
+                niter = 1e3)
+```
+
+
+<!-- slide 15 -->
+
+## Components
+
+```{r, echo = FALSE}
+lts_ss <- list()
+lts_ss <- AddLocalLinearTrend(lts_ss, y = gilt)
+lts_ss <- AddSeasonal(lts_ss, gilt, nseasons = 30)
+lts_fit <- bsts(gilt, state.specification = lts_ss,
+                niter = 1e3, ping = 0)
+```
+
+```{r}
+plot(lts_fit, 'components')
+```
+
+
+<!-- slide 16 -->
+
+## Forecasts
+
+```{r}
+lts_pred <- predict(lts_fit, horizon = 30)
+plot(lts_pred, plot.original = 90)
+```
+
+
+
+<!-- slide 17 -->
+
+## Model Comparison
+
+```{r  fig.height=6}
+CompareBstsModels(lwd = 4, model.list = list(
+  level = ll_fit, trend = llt_fit, season = lts_fit),
+  colors = c("forestgreen", "firebrick", "blue4"))
+```
+
