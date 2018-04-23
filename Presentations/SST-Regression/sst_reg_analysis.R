@@ -23,6 +23,7 @@ model1 <- bsts(SST ~., state.specification = ss,
 plot(model1, 'components')
 plot(model1, 'coefficients')
 
+# posterior inclusion probabilities
 apply(model1$coefficients, MARGIN = 2, function(x) mean(x != 0))
 
 newdata <- matrix(0, ncol = 9, nrow = 12)
@@ -37,6 +38,20 @@ model1_pred <- predict(model1, newdata = newdata, horizon = 12)
 plot(model1_pred, plot.original = 36)
 
 
+# ----- change prior from default ------
 
+model2 <- bsts(SST ~., state.specification = ss,
+               data = gib, niter = 1000, ping = 0,
+               expected.model.size = 2)
 
+plot(model2, 'coefficients')
 
+# model2_pred <- predict(model2, newdata = newdata, horizon = 12)
+# plot(model2_pred, plot.original = 36)
+
+model3 <- bsts(SST ~., state.specification = ss,
+               data = gib, niter = 1000, ping = 0,
+               prior.inclusion.probabilities = 
+                 c(0.01, 0.5, 0.3, 0.3, 0.1, 0.1,
+                   0.1, 0.1, 0.1, 0.1))
+plot(model3, 'coefficients')
