@@ -2,7 +2,7 @@
 library(readr)
 library(bsts)
 
-gib <- read_csv("data/gilbralter_time_series_r.csv", 
+gib <- read_csv("data/gilbralter_time_series_r_2.csv", 
                        col_types = cols(startDate = col_skip(), 
                                         timeIdx = col_skip()))
 names(gib) <- c('SST', '10', '20', '30', '40',
