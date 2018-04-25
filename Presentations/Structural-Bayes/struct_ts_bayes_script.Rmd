@@ -65,7 +65,7 @@ The *slab* prior is shown here.
 
 (->) It says that $\beta_{\gamma}$, given $\sigma_{\varepsilon}^2$ and $\gamma$ follows a normal distribution with mean vector $b_{\gamma}$ and covariance matrix $\sigma_{\varepsilon}^2 \Omega_{\gamma}$. As is often done in Bayesian statistics to ease calculations, we specify a distribution for $\frac{1}{\sigma_{\varepsilon}^2}$ instead of $\sigma_{\varepsilon}^2$. This distribution is Gamma with parameters $\frac{v}{2}$ and $\frac{ss}{2}$. The parameterization for the Gamma distribution here is the shape-rate parameterization.
 
-For this prior, we need to specify $b, \sigma_{\varepsilon}^2, \Omega^{-1}, v$, and $ss$. But before we do we want to note the full prior. (-> Slide 7)
+For this prior, we need to specify $b, \sigma_{\varepsilon}^2, \Omega^{-1}, v$, and $ss$. But before we do, we want to note the full prior. (-> Slide 7)
 
 ### Slide 7
 

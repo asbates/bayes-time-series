@@ -18,22 +18,22 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ## Outline
 
- - Without Regression:
-     - Prior
-     - Posterior
- - With Regression:
-     - Prior
-     - Posterior
+> - Without Regression:
+>      - Prior
+>      - Posterior
+> - With Regression:
+>      - Prior
+>      - Posterior
      
 <!-- slide 3 -->
 
 ## Without Regression
 
-- Prior
-    - Specify distribution on parameters (variances)
-- Posterior
-    - Kalman filter and Kalman smoother
-    - Markov Chain Monte Carlo
+> - Prior
+>     - Specify distribution on parameters (variances)
+> - Posterior
+>     - Kalman filter and Kalman smoother
+>     - Markov Chain Monte Carlo
 
 
 <!-- slide 4 -->
@@ -41,10 +41,10 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ## Spike and Slab Prior
 
-- Consider regression coefficients fixed through time
-    - If not, include as state variables
-- **Spike**: prior for probability of regression coefficients being zero
-- **Slab**: prior on nonzero regression coefficients and variance
+> - Consider regression coefficients fixed through time
+>     - If not, include as state variables
+> - **Spike**: prior for probability of regression coefficients being zero
+> - **Slab**: prior on nonzero regression coefficients and variance
 
 <!-- slide 5 -->
 
@@ -133,7 +133,3 @@ knitr::opts_chunk$set(echo = FALSE)
     - MCMC:
         - stochastic search variable selection
         - Gibbs sampler
-
-
-
-
