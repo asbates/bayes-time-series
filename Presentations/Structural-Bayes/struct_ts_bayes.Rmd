@@ -7,7 +7,6 @@ header-includes:
   - \usepackage{themes/beamerthemednd}
 output: 
   beamer_presentation:
-    incremental: true
 #theme: 'dnd'
 #colortheme: 'dndcolors'
 #fonttheme: 'dndfonts'
@@ -16,8 +15,6 @@ output:
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = FALSE)
 ```
-
-<!-- slide 1 -->
 
 ## Outline
 
@@ -28,7 +25,7 @@ knitr::opts_chunk$set(echo = FALSE)
      - Prior
      - Posterior
      
-<!-- slide 2 -->
+<!-- slide 3 -->
 
 ## Without Regression
 
@@ -39,7 +36,7 @@ knitr::opts_chunk$set(echo = FALSE)
     - Markov Chain Monte Carlo
 
 
-<!-- slide 3 -->
+<!-- slide 4 -->
 
 
 ## Spike and Slab Prior
@@ -49,7 +46,7 @@ knitr::opts_chunk$set(echo = FALSE)
 - **Spike**: prior for probability of regression coefficients being zero
 - **Slab**: prior on nonzero regression coefficients and variance
 
-<!-- slide 4 -->
+<!-- slide 5 -->
 
 ## Spike and Slab Prior
 
@@ -61,7 +58,7 @@ knitr::opts_chunk$set(echo = FALSE)
 \[\gamma \sim \prod_{i=1}^K \pi_k^{\gamma_k} (1-\pi_k)^{1-\gamma_k}\]
 
 
-<!-- slide 5 -->
+<!-- slide 6 -->
 
 
 ## Spike and Slab Prior
@@ -77,7 +74,7 @@ knitr::opts_chunk$set(echo = FALSE)
 \end{align*}
 
 
-<!-- slide 6 -->
+<!-- slide 7 -->
 
 
 ## Spike and Slab Prior
@@ -86,6 +83,8 @@ knitr::opts_chunk$set(echo = FALSE)
 
 \[ p(\beta, \gamma, \sigma_{\varepsilon}^2) = p(\beta_{\gamma}|\gamma, \sigma_{\varepsilon}^2)p(\sigma_{\varepsilon}^2|\gamma)p(\gamma)\]
 
+
+<!-- slide 8 -->
 
 ## Specifying Spike and Slab Prior
 
@@ -96,7 +95,7 @@ knitr::opts_chunk$set(echo = FALSE)
     - $\Omega^{-1} = \frac{k}{n}X^TX$
 
 
-<!-- slide 7 -->
+<!-- slide 9 -->
 
 
 ## Spike and Slab Posterior
@@ -117,7 +116,7 @@ knitr::opts_chunk$set(echo = FALSE)
 - $SS_{\gamma} = ss + y^{*^T} y^* + b_{\gamma}^T\Omega_{\gamma}^{-1}b_{\gamma} - \tilde{\beta}_{\gamma}^TV_{\gamma}^{-1}\tilde{\beta}_{\gamma}$
 
 
-<!-- slide 8 -->
+<!-- slide 10 -->
 
 ## Spike and Slab Posterior
 
@@ -125,7 +124,7 @@ knitr::opts_chunk$set(echo = FALSE)
 \[\gamma\big|y^* \sim C(y^*) \frac{|\Omega_{\gamma}^{-1}|^{1/2}}{|V_{\gamma}^{-1}|^{1/2}} \frac{p(\gamma)}{SS_{\gamma}^{N/2 - 1}}\]
 
 
-<!-- slide 9 -->
+<!-- slide 11 -->
 
 ## Posterior Sampling
 

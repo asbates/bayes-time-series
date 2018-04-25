@@ -8,7 +8,7 @@ output: pdf_document
 Welcome back! We hope your journey so far has been rewarding. As we noted in the previous part, this stage of your journey is the most challenging. But worry not. For once you understand how the Bayesian philosophy can be applied to structural time series, you will be ready to apply it to data. (-> Slide 2)
 
 
-### Slide 3
+### Slide 2
 
 In this part of you adventure, we will see how the Bayesian framework can be applied to structural time series. We first discuss Bayesian structural time series when we do not have a regression component. This includes:
 
@@ -18,11 +18,11 @@ In this part of you adventure, we will see how the Bayesian framework can be app
 We only briefly cover this as our main focus is the case where we do have a regression component (->). Again, we discuss
 
 (->) the prior distribution
-(->) and obtaining the posterior distribution. (-> Slide 4)
+(->) and obtaining the posterior distribution. (-> Slide 3)
 
 
 
-### Slide 4
+### Slide 3
 
 Assuming we don't have a regression component in our model, for example, the local level model, then our parameters are the variances of the error terms.
 
@@ -34,15 +34,19 @@ Assuming we don't have a regression component in our model, for example, the loc
 
 (->) along with Markov Chain Monte Carlo sampling.
 
-When we do have a regression component, we use what is called a *Spike and Slab Prior* (-> Slide 5). We will consider our regression coefficients fixed through time because otherwise (->) they could be added as an additional state component.
+When we do have a regression component, we use what is called a *Spike and Slab Prior* (-> Slide 4). 
+
+## Slide 4
+
+We will consider our regression coefficients fixed through time because otherwise (->) they could be added as an additional state component.
 
 (->) The *Spike* in Spike and Slab regression is a prior that specifies a positive probabilty for each regression coefficient being equal to zero.
 
 (->) The *Slab* is the prior for each of the regression coefficients that are not zero, and also the prior for the variance of the error term.
 
-This should become more clear as we discuss each of these in more detail. (-> Slide 6)
+This should become more clear as we discuss each of these in more detail. (-> Slide 5)
 
-### Slide 6
+### Slide 5
 
 To understand the Spike component, we will need a bit of set up notation. Suppose we have a vector $\gamma$ where each component $\gamma_k$ is one if $\beta_k \neq 0$ and is otherwise zero. Here, $\beta$ is the vector of regression coefficients.
 
@@ -51,9 +55,9 @@ To understand the Spike component, we will need a bit of set up notation. Suppos
 The prior distribution we use for $\gamma$ is an independent Bernoulli prior (->). This means that, for each component $\gamma_k$ of $\gamma$, $\pi_k$ is the probability that $\gamma_k$ is equal to one and thus, $\beta_k$ is included in the model. We will discuss how to choose the $\pi_k$s shortly.
 
 
-Along with specifying our *spike* prior, we need to specify the *slab* prior. (-> Slide 7).
+Along with specifying our *spike* prior, we need to specify the *slab* prior. (-> Slide 6).
 
-### Slide 7
+### Slide 6
 
 Again, we need a little notation to start with. For a symmetric matrix $\Omega^{-1}$, (->) we let $\Omega_{\gamma}^{-1}$ denote the sub matrix whose rows and columns correspond to the indices $k$ where $\gamma_k = 1$. This is the same idea as with $\beta_{\gamma}$.
 
@@ -61,13 +65,13 @@ The *slab* prior is shown here.
 
 (->) It says that $\beta_{\gamma}$, given $\sigma_{\varepsilon}^2$ and $\gamma$ follows a normal distribution with mean vector $b_{\gamma}$ and covariance matrix $\sigma_{\varepsilon}^2 \Omega_{\gamma}$. As is often done in Bayesian statistics to ease calculations, we specify a distribution for $\frac{1}{\sigma_{\varepsilon}^2}$ instead of $\sigma_{\varepsilon}^2$. This distribution is Gamma with parameters $\frac{v}{2}$ and $\frac{ss}{2}$. The parameterization for the Gamma distribution here is the shape-rate parameterization.
 
-For this prior, we need to specify $b, \sigma_{\varepsilon}^2, \Omega^{-1}, v$, and $ss$. But before we do we want to note the full prior. (-> Slide 8)
+For this prior, we need to specify $b, \sigma_{\varepsilon}^2, \Omega^{-1}, v$, and $ss$. But before we do we want to note the full prior. (-> Slide 7)
+
+### Slide 7
+
+The full prior is the product of the three individual priors we just discussed. We don't write it out in detail here because it might look a bit intimidating, but you are certainly welcom to do so yourself. (-> Slide 8)
 
 ### Slide 8
-
-The full prior is the product of the three individual priors we just discussed. We don't write it out in detail here because it might look a bit intimidating, but you are certainly welcom to do so yourself. (-> Slide 9)
-
-### Slide 9
 
 Now that we know what the priors are, let's discuss how we choose specific priors. The hyperparameters for $\sigma_{\varepsilon}^2$ are $v$ and $ss$. We can think of these as sort of like a prior sum of squares and a prior sample size. In the bsts package, this boils down to selecting and expected $R^2$ from the regression and an expected model size. The default values are $R^2 = 0.5$ and $v = 0.01$. 
 
@@ -77,9 +81,9 @@ Now that we know what the priors are, let's discuss how we choose specific prior
 
 (->) bsts sets $\Omega^{-1}$ to be $\frac{k}{n}X^TX$ for a specified value of $k$. This essentially reflects our prior knowledge on how close $\beta$ is to the prior mean $b$. The default value in bsts is $k = 1$.
 
-That takes care of the prior, so now we are ready to move on to the posterior. (-> Slide 10)
+That takes care of the prior, so now we are ready to move on to the posterior. (-> Slide 9)
 
-### Slide 10
+### Slide 9
 
 Again, we need a little notation to set things up. Let $Z_t^*$ denote the observation matrix $Z_t$ with $\beta^Tx_t$ set to zero.
 
@@ -101,13 +105,13 @@ The parameters of each of these distributions are here.
 
 (->) ''
 
-(-> Slide 11)
+(-> Slide 10)
+
+### Slide 10
+
+And the posterior of $\gamma$ is here. (-> Slide 11)
 
 ### Slide 11
-
-And the posterior of $\gamma$ is here. (-> Slide 12)
-
-### Slide 12
 
 To obtain a sample from the posterior distribution, we use a combination of 
 
