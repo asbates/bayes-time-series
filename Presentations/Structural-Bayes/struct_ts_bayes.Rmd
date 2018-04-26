@@ -88,11 +88,11 @@ knitr::opts_chunk$set(echo = FALSE)
 
 ## Specifying the Prior
 
-- $ss$, $v$: prior sum of squares and prior sample size
-    - Expected $R^2$, expected model size
-- $\pi_k$: inclusion probability for regression coefficients
-- $\Omega^{-1}$: based on design matrix $X$
-    - $\Omega^{-1} = \frac{k}{n}X^TX$
+> - $ss$, $v$: prior sum of squares and prior sample size
+>     - Expected $R^2$, expected model size
+> - $\pi_k$: inclusion probability for regression coefficients
+> - $\Omega^{-1}$: based on design matrix $X$
+>     - $\Omega^{-1} = \frac{k}{n}X^TX$
 
 
 <!-- slide 9 -->
