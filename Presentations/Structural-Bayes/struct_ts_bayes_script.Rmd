@@ -15,7 +15,7 @@ In this part of you adventure, we will see how the Bayesian framework can be app
 (->) the prior distribution of our parameters
 (->) and how to obtain the posterior distribution.
 
-We only briefly cover this as our main focus is the case where we do have a regression component (->). Again, we discuss
+We only briefly cover this, as our main focus is the case where we do have a regression component (->). Again, in the case where we add a regression component we will discuss
 
 (->) the prior distribution
 (->) and obtaining the posterior distribution. (-> Slide 3)
