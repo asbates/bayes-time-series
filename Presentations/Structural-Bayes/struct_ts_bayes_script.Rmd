@@ -73,7 +73,9 @@ The full prior is the product of the three individual priors we just discussed. 
 
 ### Slide 8
 
-Now that we know what the priors are, let's discuss how we choose specific priors. The hyperparameters for $\sigma_{\varepsilon}^2$ are $v$ and $ss$. We can think of these as sort of like a prior sum of squares and a prior sample size. In the bsts package, this boils down to selecting an expected $R^2$ from the regression and an expected model size. The default values are $R^2 = 0.5$ and $v = 0.01$. 
+Now that we know what the priors are, let's discuss how we choose specific priors. The hyperparameters for $\sigma_{\varepsilon}^2$ are $v$ and $ss$. We can think of these as sort of like a prior sum of squares and a prior sample size. 
+
+(->) In the bsts package, this boils down to selecting an expected $R^2$ from the regression and an expected model size. The default values are $R^2 = 0.5$ and $v = 0.01$. 
 
 (->) For the $\pi_k$s, we specify the probability that $\beta_k$ should be nonzero. For example, if we are very certain $\beta_1$ should be in the model, we could specify $\pi_1$ to be 0.95. If we don't have any previous knowledge as to which regression coefficients should be included, we could set $\pi_k$ to 1/2 for every $k$, which is the default in the bsts package.
 
