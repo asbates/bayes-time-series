@@ -192,4 +192,15 @@ points(147:158, gib_test$SST, col = 'red')
 ```
 
 
+<!-- slide 17 -->
 
+## Next Steps
+
+- `bsts` package
+    - `summary`
+    - `AddDynamicRegression`
+    - `SuggestBurn`
+    - logit, poisson, t errors (`family` argument in `bsts`)
+- `BoomSpikeSlab` package
+    
+    
