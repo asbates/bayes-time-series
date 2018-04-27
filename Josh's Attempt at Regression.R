@@ -46,7 +46,7 @@ library(readr)
 gib <- read_csv("Presentations/SST/data/gilbralter_time_series_r_recent.csv")
 gib = gib[,-c(1,3)]
 names(gib) = c("SST", "10m", "20m", "30m", "40m", "50m", "60m", "70m", "80m", "90m")
-gib_train = gib[1:130,]
+gib_train = gib[1:130, ]
 gib_test = gib[131:158,]
 
 ss = AddLocalLinearTrend(list(), y=gib_train$SST)
