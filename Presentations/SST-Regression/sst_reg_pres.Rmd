@@ -1,6 +1,6 @@
 ---
 title: "Adventures in Bayesian Structural Time Series"
-subtitle: "Part 4: Analyzing SST Data With Regression"
+subtitle: "Part 5: Analyzing SST Data With Regression"
 author: "Andrew Bates, Josh Gloyd, Tyler Tucker"
 urlcolor: blue
 header-includes:
@@ -84,6 +84,13 @@ names(gib) <- c('SST', '10m', '20m', '30m', '40m',
                       '50m', '60m', '70m', '80m', '90m')
 gib_train <- gib[1:146, ]
 gib_test <- gib[147:158, ]
+```
+
+
+## SST Data
+
+```{r}
+head(gib_test[, 1:8])
 ```
 
 
