@@ -1,6 +1,6 @@
 ---
 title: "Adventures in Bayesian Structural Time Series"
-subtitle: "Part 5: Analyzing SST Data With Regression"
+subtitle: "Part 4: Analyzing SST Data With Regression"
 author: "Andrew Bates, Josh Gloyd, Tyler Tucker"
 urlcolor: blue
 header-includes:
@@ -12,33 +12,29 @@ output: beamer_presentation
 ---
 
 ```{r setup, include=FALSE, echo = FALSE}
-knitr::opts_chunk$set(fig.align = 'center', out.width = '95%',
+knitr::opts_chunk$set(fig.align = 'center', out.width = '90%',
                       message = FALSE, cache = TRUE)
 ```
 
 
-<!-- slide 3 -->
-
+```{r, echo = FALSE}
+knitr::include_graphics('images/tempColorChart.png')
+```
 
 ## Outline
 
 - SST data with covariates
 - Use `bsts` to
     - Fit structural model with regression
-    - Regression posterior
     - Forecast
     - Custom regresson prior
-    
-<!-- slide 4-->
 
 ## SST Data
 
 - Sea Surface Temperature near Gibraltar
 - Aggregated monthly
-- January 2004 to April 2018
-- Covariates: depth at 10, 20, ..., 90 meters
-
-<!-- slide 5 -->
+- January 2004 to November 2017
+- Covariates: 10 meter thick water layers at 10, 20, ...,90  meters
 
 ## SST Data
 
@@ -46,30 +42,31 @@ knitr::opts_chunk$set(fig.align = 'center', out.width = '95%',
 knitr::include_graphics('images/tempColorChart.png')
 ```
 
-
-<!-- slide 6 -->
-
 ## SST Data
 
 ```{r, echo = FALSE}
 library(readr)
 library(bsts)
 
-gib <- read_csv("data/gilbralter_time_series_r_2.csv", 
-                col_types = cols(startDate = col_skip(),
-                                 timeIdx = col_skip()))
-names(gib) <- c('SST', '10m', '20m', '30m', '40m',
-                '50m', '60m', '70m', '80m', '90m')
-gib_train <- gib[1:146, ]
-gib_test <- gib[147:158, ]
-
-ts.plot(gib_train$SST, main='SST of Gilbralter region',
-     ylab='Temperature [C]', 
-     ylim=c(15, 26))
+gib <- read_csv("data/gilbralter_ts_reg.csv", 
+                       col_types = cols(startDate = col_skip(), 
+                                        timeIdx = col_skip()))
+names(gib) <- c('SST', '10', '20', '30', '40',
+                      '50', '60', '70', '80', '90')
+#gib <- zooreg(gib, start = c(2004, 1, 1), end = c(2017, 11, 29),
+#               frequency = 12)
+gib <- zooreg(gib)
+nseasons = 11
+ss <- list()
+ss <- AddLocalLinearTrend(ss, gib$SST)
+ss <- AddSeasonal(ss, gib$SST, nseasons=nseasons)
+lls_model <- bsts(gib$SST,
+               state.specification=ss,
+               niter=1000, ping=0)
+#plot(lls_model, 'components')
+lls_model_pred <- predict(lls_model, newdata=newdata, horizon=12)
+plot(lls_model_pred, plot.original = 36)
 ```
-
-
-<!-- slide 7 -->
 
 ## Setup
 
@@ -77,130 +74,137 @@ ts.plot(gib_train$SST, main='SST of Gilbralter region',
 library(readr)
 library(bsts)
 
-gib <- read_csv("data/gilbralter_time_series_r_2.csv", 
-                col_types = cols(startDate = col_skip(), 
-                                 timeIdx = col_skip()))
-names(gib) <- c('SST', '10m', '20m', '30m', '40m',
-                      '50m', '60m', '70m', '80m', '90m')
-gib_train <- gib[1:146, ]
-gib_test <- gib[147:158, ]
+gib <- read_csv("data/gilbralter_ts_reg.csv",
+                col_types=cols(startDate=col_skip(),
+                                 timeIdx=col_skip()))
+names(gib) <- c('SST', '10', '20', '30', '40',
+                      '50', '60', '70', '80', '90')
+gib <- zooreg(gib)
 ```
 
-
-## SST Data
-
-```{r}
-head(gib_test[, 1:8])
-```
-
-
-<!-- slide 8 -->
 
 ## Model Fitting
 
+### Local Trend With Seasonality and Regression
+
+$\mu_t$: local linear trend 
+$\tau_t$: seasonal component
+$\beta_t^Tx_t$: regression component
+
+\begin{align*}
+&y_t = \mu_t + \tau_t + \beta_t^Tx_t  + \varepsilon_t &\varepsilon_t \sim N(0, \sigma^2_{\varepsilon})
+\end{align*}
+
+## SST Data
+
+```{r, echo=FALSE}
+print(gib[1:5, 1:5], digits=5)
+```
+
+## Forecasting Data
+```{r, echo = TRUE}
+newdata <- matrix(0, ncol=9, nrow=12)
+newdata[1, ] <- colMeans(gib[, 2:10])
+gib_sd <- apply(gib, 2, sd)
+for(i in 2:12){
+  for(j in 2:9){
+  newdata[i, ] <- newdata[1, ] + rnorm(1, sd=gib_sd[j])}}
+```
+
+## Model 1
+Local linear, seasonal, and one linear component
 ```{r}
-ss <- AddLocalLinearTrend(list(), gib$SST)
-ss <- AddSeasonal(ss, gib$SST, nseasons = 12)
-model1 <- bsts(SST ~., state.specification = ss,
-               data = gib_train, niter = 1000, ping = 0)
+nseasons = 11
+ss <- list()
+ss <- AddLocalLinearTrend(ss, gib$SST)
+ss <- AddSeasonal(ss, gib$SST, nseasons=nseasons)
+rlls_model <- bsts(SST ~., state.specification=ss,
+               data=gib, niter=1000, ping=0,
+               expected.model.size=1)
 ```
 
 
-<!-- slide 9 -->
-
-## Model Plotting
-
+## Component Plotting
 ```{r}
-plot(model1, 'components')
+plot(rlls_model, 'components')
+```
+
+## Covariate Significance
+```{r}
+plot(rlls_model, 'coefficients')
+```
+
+## Forcasting
+
+```{r, fig.height=6}
+rlls_model_pred <- predict(rlls_model,
+                   newdata=newdata, horizon=12)
+plot(rlls_model_pred, plot.original=36)
+```
+
+## Model 2
+Local linear, and one linear component model
+```{r}
+ss <- list()
+ss <- AddLocalLinearTrend(ss, gib$SST)
+rll_model <- bsts(SST ~., state.specification = ss,
+               data=gib, niter=1000, ping=0,
+               expected.model.size=1)
 ```
 
 
-<!-- slide 10 -->
-
-## Model Plotting
-
+## Component Plotting
 ```{r}
-plot(model1, 'coefficients')
+plot(rll_model, 'components')
+```
+
+## Covariate Significance
+```{r}
+plot(rll_model, 'coefficients')
+```
+
+## Forcasting
+
+```{r fig.height=6}
+rll_model_pred <- predict(rll_model,
+                  newdata=newdata, horizon=12)
+plot(rll_model_pred, plot.original=36)
+```
+
+
+## Model 3
+Local linear, and five linear component model
+```{r}
+ss <- list()
+ss <- AddLocalLinearTrend(ss, gib$SST)
+r5ll_model <- bsts(SST ~., state.specification = ss,
+               data=gib, niter=1000, ping=0,
+               expected.model.size=5)
+```
+
+## Covariate Significance
+```{r}
+plot(r5ll_model, 'coefficients')
+```
+
+## Forcasting
+
+```{r fig.height=6}
+r5ll_model_pred <- predict(r5ll_model,
+                  newdata=newdata, horizon=12)
+plot(r5ll_model_pred, plot.original=36)
+```
+
+## Model Comparison
+
+```{r, echo=FALSE, fig.height=6}
+CompareBstsModels(lwd = 4,
+                  model.list = list("No reg." = lls_model,
+                       "Model 1" = rlls_model,
+                       "Model 2" = rll_model,
+                       "Model 3" = r5ll_model),
+  colors = c("forestgreen", "firebrick", "blue4", "black"))
 ```
 
 
 
-
-<!-- slide 11-->
-
-## Forecasting
-
-
-```{r}
-model1_pred <- predict(model1, newdata = gib_test[, -1],
-                       horizon = 12)
-plot(model1_pred, plot.original = 36)
-points(147:158, gib_test$SST, col = 'red')
-```
-
-
-<!-- slide 12 -->
-
-## Custom Regression Prior
-
-```{r}
-model2 <- bsts(SST ~., state.specification = ss,
-               data = gib_train, niter = 1000, ping = 0,
-               expected.model.size = 2)
-```
-
-
-<!-- slide 13 -->
-
-## Custom Regression Prior
-
-```{r}
-plot(model2, 'coefficients')
-```
-
-
-<!-- slide 14 -->
-
-## Custom Regression Prior
-
-```{r}
-bp = c(.01,.5,.3,.3,.1,.1,.1,.1,.1,.1)
-model3 <- bsts(SST ~., state.specification = ss,
-               data = gib_train, niter = 1000, ping = 0,
-               prior.inclusion.probabilities = bp)
-```
-
-
-<!-- slide 15 -->
-
-## Custom Regression Prior
-
-```{r}
-plot(model3, 'coefficients')
-```
-
-
-<!-- slide 16 -->
-
-## Forecasting
-
-```{r}
-model3_pred <- predict(model3, newdata = gib_test[,-1], 
-                       horizon = 12)
-plot(model3_pred, plot.original = 36)
-points(147:158, gib_test$SST, col = 'red')
-```
-
-
-<!-- slide 17 -->
-
-## Next Steps
-
-- `bsts` package
-    - `summary`
-    - `AddDynamicRegression`
-    - `SuggestBurn`
-    - logit, poisson, t errors (`family` argument in `bsts`)
-- `BoomSpikeSlab` package
-    
-    
