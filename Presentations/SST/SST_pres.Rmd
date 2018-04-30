@@ -7,14 +7,14 @@ header-includes:
   - \usepackage{themes/beamerthemednd}
 output: 
   beamer_presentation:
-    incremental: true
+    incremental: false
 #theme: 'dnd'
 #colortheme: 'dndcolors'
 #fonttheme: 'dndfonts'
 ---
 
 ```{r setup, include=FALSE, echo = FALSE}
-knitr::opts_chunk$set(fig.align = 'center', out.width = '95%',
+knitr::opts_chunk$set(fig.align = 'center', out.width = '90%',
                       message = FALSE, cache = TRUE)
 ```
 
@@ -23,28 +23,12 @@ knitr::opts_chunk$set(fig.align = 'center', out.width = '95%',
 
 ## Outline
 
-- SST Data
+- SST data.
+- Model fitting of SST data, whose components include: local level, local linear trend, and seasonal trend.
+- Generating a posterior distribution of our model time series
+- Some heuristic comparisons between the different models.
 
-- Use `bsts` for
-    - Fit
-        - local level
-        - local linear trend model
-        - local trend with seasonality
-    - Posterior distribution
-    - Forecast
-    - Model Comparison
-    
 <!-- slide 4 -->
-    
-## SST Data
-
-- Sea Surface Temperature near Gibraltar
-- Aggregated every 12 days
-- January 2004 to November 2017
-- Obtained from [Argovis](http://argovis.com/map)
-
-    
-<!-- slide 5 -->
 
 ## SST Data
 
@@ -61,7 +45,15 @@ plot(gilt, main='SST of Gilbralter region',
      ylab='Temperature (C)')
 ```
 
+<!-- slide 5 -->
+    
+## SST Data
 
+- SST data come from Argo floats
+- Aggregated every 12 days
+- January 2004 to November 2017
+- Obtained from [www.Argovis.com](http://argovis.com/map)
+- Learn more about Argovis by watching a tutorial at [https://www.youtube.com/watch?v=IlNJ0owuTHM&t=0s](https://www.youtube.com/watch?v=IlNJ0owuTHM&t=0s)
 <!-- slide 6 -->
 
 ## Setup
@@ -197,8 +189,8 @@ plot(llt_pred, plot.original = 90)
 ### Local Trend With Seasonality
 
 \begin{align*}
-&y_t = \mu_t + \tau_t + \varepsilon_t  &\zeta_t \sim N(0, \sigma^2_{\varepsilon}) \\
-&\tau_t = - \sum_{s=1}^{S-1} \tau_{t-s} + \omega_t  &\tau_t \sim N(0, \sigma^2_{\omega})
+&y_t = \mu_t + \tau_t + \varepsilon_t  &\varepsilon_t \sim N(0, \sigma^2_{\varepsilon}) \\
+&\tau_t = - \sum_{s=1}^{S-1} \tau_{t-s} + \omega_t  &\omega_t \sim N(0, \sigma^2_{\omega})
 \end{align*}
 
 ### 
@@ -243,8 +235,9 @@ plot(lts_pred, plot.original = 90)
 
 ## Model Comparison
 
-```{r}
-CompareBstsModels(model.list = list(
-  level = ll_fit, trend = llt_fit, season = lts_fit))
+```{r  fig.height=6}
+CompareBstsModels(lwd = 4, model.list = list(
+  level = ll_fit, trend = llt_fit, season = lts_fit),
+  colors = c("forestgreen", "firebrick", "blue4"))
 ```
 
