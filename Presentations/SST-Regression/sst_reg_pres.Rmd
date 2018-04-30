@@ -14,6 +14,7 @@ output: beamer_presentation
 ```{r setup, include=FALSE, echo = FALSE}
 knitr::opts_chunk$set(fig.align = 'center', out.width = '90%',
                       message = FALSE, cache = TRUE)
+setwd("~/Desktop/STAT676/bayes-time-series/Presentations/SST-Regression")
 ```
 
 
@@ -47,24 +48,22 @@ knitr::include_graphics('images/tempColorChart.png')
 ```{r, echo = FALSE}
 library(readr)
 library(bsts)
+gib <- read_csv("./data/gilbralter_ts_reg.csv")
+gib = gib[,-c(1,3)]
+names(gib) = c("SST", "10m", "20m", "30m", "40m", "50m", "60m", "70m", "80m", "90m")
+gib_train = gib[1:130,]
+gib_test = gib[131:158,-1]
 
-gib <- read_csv("data/gilbralter_ts_reg.csv", 
-                       col_types = cols(startDate = col_skip(), 
-                                        timeIdx = col_skip()))
-names(gib) <- c('SST', '10', '20', '30', '40',
-                      '50', '60', '70', '80', '90')
-#gib <- zooreg(gib, start = c(2004, 1, 1), end = c(2017, 11, 29),
-#               frequency = 12)
-gib <- zooreg(gib)
+
 nseasons = 11
 ss <- list()
-ss <- AddLocalLinearTrend(ss, gib$SST)
-ss <- AddSeasonal(ss, gib$SST, nseasons=nseasons)
-lls_model <- bsts(gib$SST,
+ss <- AddLocalLinearTrend(ss, gib_train$SST)
+ss <- AddSeasonal(ss, gib_train$SST, nseasons=nseasons)
+lls_model <- bsts(gib_train$SST,
                state.specification=ss,
                niter=1000, ping=0)
 #plot(lls_model, 'components')
-lls_model_pred <- predict(lls_model, newdata=newdata, horizon=12)
+lls_model_pred <- predict(lls_model, newdata=gib_test, horizon=12)
 plot(lls_model_pred, plot.original = 36)
 ```
 
@@ -73,13 +72,11 @@ plot(lls_model_pred, plot.original = 36)
 ```{r, eval = FALSE}
 library(readr)
 library(bsts)
-
-gib <- read_csv("data/gilbralter_ts_reg.csv",
-                col_types=cols(startDate=col_skip(),
-                                 timeIdx=col_skip()))
-names(gib) <- c('SST', '10', '20', '30', '40',
-                      '50', '60', '70', '80', '90')
-gib <- zooreg(gib)
+gib <- read_csv("./data/gilbralter_ts_reg.csv")
+gib = gib[,-c(1,3)]
+names(gib) = c("SST", "10m", "20m", "30m",
+               "40m", "50m", "60m", "70m",
+               "80m", "90m")
 ```
 
 
@@ -89,10 +86,10 @@ gib <- zooreg(gib)
 
 $\mu_t$: local linear trend 
 $\tau_t$: seasonal component
-$\beta_t^Tx_t$: regression component
+$\beta^Tx_t$: regression component
 
 \begin{align*}
-&y_t = \mu_t + \tau_t + \beta_t^Tx_t  + \varepsilon_t &\varepsilon_t \sim N(0, \sigma^2_{\varepsilon})
+&y_t = \mu_t + \tau_t + \beta^Tx_t  + \varepsilon_t &\varepsilon_t \sim N(0, \sigma^2_{\varepsilon})
 \end{align*}
 
 ## SST Data
@@ -103,12 +100,8 @@ print(gib[1:5, 1:5], digits=5)
 
 ## Forecasting Data
 ```{r, echo = TRUE}
-newdata <- matrix(0, ncol=9, nrow=12)
-newdata[1, ] <- colMeans(gib[, 2:10])
-gib_sd <- apply(gib, 2, sd)
-for(i in 2:12){
-  for(j in 2:9){
-  newdata[i, ] <- newdata[1, ] + rnorm(1, sd=gib_sd[j])}}
+gib_train = gib[1:130,]
+gib_test = gib[131:158,-1]
 ```
 
 ## Model 1
@@ -116,13 +109,12 @@ Local linear, seasonal, and one linear component
 ```{r}
 nseasons = 11
 ss <- list()
-ss <- AddLocalLinearTrend(ss, gib$SST)
-ss <- AddSeasonal(ss, gib$SST, nseasons=nseasons)
-rlls_model <- bsts(SST ~., state.specification=ss,
-               data=gib, niter=1000, ping=0,
-               expected.model.size=1)
+ss = AddLocalLinearTrend(ss, y=gib_train$SST)
+ss = AddSeasonal(ss, gib_train$SST, nseasons=nseasons)
+rlls_model = bsts(SST ~ ., state.specification=ss,
+                  data=gib_train, niter=1000, ping=0,
+                  expected.model.size=1)
 ```
-
 
 ## Component Plotting
 ```{r}
@@ -137,73 +129,40 @@ plot(rlls_model, 'coefficients')
 ## Forcasting
 
 ```{r, fig.height=6}
-rlls_model_pred <- predict(rlls_model,
-                   newdata=newdata, horizon=12)
-plot(rlls_model_pred, plot.original=36)
+rlls_model_pred = predict(rlls_model,
+                          newdata=gib_test,
+                          horizon = 28)
+plot(rlls_model_pred, plot.original = 90)
 ```
 
 ## Model 2
-Local linear, and one linear component model
+Local linear, seasonal and two linear component model
 ```{r}
-ss <- list()
-ss <- AddLocalLinearTrend(ss, gib$SST)
-rll_model <- bsts(SST ~., state.specification = ss,
-               data=gib, niter=1000, ping=0,
-               expected.model.size=1)
-```
-
-
-## Component Plotting
-```{r}
-plot(rll_model, 'components')
-```
-
-## Covariate Significance
-```{r}
-plot(rll_model, 'coefficients')
-```
-
-## Forcasting
-
-```{r fig.height=6}
-rll_model_pred <- predict(rll_model,
-                  newdata=newdata, horizon=12)
-plot(rll_model_pred, plot.original=36)
+r2lls_model = bsts(SST ~ ., state.specification=ss,
+                   data=gib_train, niter=1000, ping=0,
+                   expected.model.size=2)
 ```
 
 
 ## Model 3
-Local linear, and five linear component model
+Specifying inclusion probabilities
 ```{r}
-ss <- list()
-ss <- AddLocalLinearTrend(ss, gib$SST)
-r5ll_model <- bsts(SST ~., state.specification = ss,
-               data=gib, niter=1000, ping=0,
-               expected.model.size=5)
+bp = c(.6,.3,.3,.3,.1,.1,.1,.1,.1,.1)
+bp_model = bsts(SST ~ ., state.specification=ss,
+                data=gib_train, niter=1000, ping=0,
+                expected.model.size=2,
+                prior.inclusion.probabilities=bp)
 ```
 
-## Covariate Significance
-```{r}
-plot(r5ll_model, 'coefficients')
-```
+## Model Comparisons
 
-## Forcasting
-
-```{r fig.height=6}
-r5ll_model_pred <- predict(r5ll_model,
-                  newdata=newdata, horizon=12)
-plot(r5ll_model_pred, plot.original=36)
-```
-
-## Model Comparison
-
-```{r, echo=FALSE, fig.height=6}
+```{r, echo=TRUE, fig.height=5}
 CompareBstsModels(lwd = 4,
-                  model.list = list("No reg." = lls_model,
-                       "Model 1" = rlls_model,
-                       "Model 2" = rll_model,
-                       "Model 3" = r5ll_model),
-  colors = c("forestgreen", "firebrick", "blue4", "black"))
+model.list = list("No reg." = lls_model,
+"Model 1" = rlls_model, "Model 2" = r2lls_model,
+"Model 3" = bp_model),
+  colors = c("forestgreen","firebrick",
+             "blue4", "black"))
 ```
 
 
