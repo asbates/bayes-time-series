@@ -55,7 +55,7 @@ knitr::opts_chunk$set(echo = FALSE)
 - $\gamma_k = 1$ if $\beta_k \neq 0$. $\gamma_k = 0$ if $\beta_k = 0$
 - $\beta_{\gamma}$: subset of $\beta$s with $\beta_k \neq 0$
 - Independent Bernoulli prior:
-\[\gamma \sim \prod_{i=1}^K \pi_k^{\gamma_k} (1-\pi_k)^{1-\gamma_k}\]
+\[\gamma \sim \prod_{k=1}^K \pi_k^{\gamma_k} (1-\pi_k)^{1-\gamma_k}\]
 
 
 <!-- slide 6 -->
