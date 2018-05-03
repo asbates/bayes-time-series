@@ -156,10 +156,10 @@ plot(gilb, main = 'Gibralter Sea Surface Temperature', ylab = 'SST')
 
 - $\mu_t$: local linear trend 
 - $\tau_t$: seasonal component
-- $\beta^Tx_t$: regression component
+- $\beta_t^Tx_t$: regression component
 
 - \begin{align*}
-&y_t = \mu_t + \tau_t + \beta^Tx_t  + \varepsilon_t &\varepsilon_t \sim N(0, \sigma^2_{\varepsilon})
+&y_t = \mu_t + \tau_t + \beta_t^Tx_t  + \varepsilon_t &\varepsilon_t \sim N(0, \sigma^2_{\varepsilon})
 \end{align*}
 
 
