@@ -64,7 +64,10 @@ lls_model <- bsts(gib_train$SST,
                niter=1000, ping=0)
 #plot(lls_model, 'components')
 lls_model_pred <- predict(lls_model, newdata=gib_test, horizon=12)
-plot(lls_model_pred, plot.original = 36)
+plot(lls_model_pred, plot.original = 36,
+     main='Seasonal local linear trend forcasts',
+     xlab='Date idx [ ]',
+     ylab='SST [deg C]')
 ```
 
 ## Setup
@@ -117,22 +120,26 @@ rlls_model = bsts(SST ~ ., state.specification=ss,
 ```
 
 ## Component Plotting
-```{r}
-plot(rlls_model, 'components')
+```{r, fig.height=5}
+plot(rlls_model, 'components',
+     xlab='Date idx [ ]',
+     ylab='SST [deg C]')
 ```
 
 ## Covariate Significance
-```{r}
+```{r, fig.height=5}
 plot(rlls_model, 'coefficients')
 ```
 
 ## Forcasting
 
-```{r, fig.height=6}
-rlls_model_pred = predict(rlls_model,
-                          newdata=gib_test,
+```{r, fig.height=5}
+rlls_model_pred = predict(rlls_model,newdata=gib_test,
                           horizon = 28)
-plot(rlls_model_pred, plot.original = 90)
+plot(rlls_model_pred, plot.original = 90,
+     main='Seas. local lin. trend forcasts with regression',
+     xlab='Date idx [ ]',
+     ylab='SST [deg C]')
 ```
 
 ## Model 2
@@ -158,11 +165,10 @@ bp_model = bsts(SST ~ ., state.specification=ss,
 
 ```{r, echo=TRUE, fig.height=5}
 CompareBstsModels(lwd = 4,
-model.list = list("No reg." = lls_model,
-"Model 1" = rlls_model, "Model 2" = r2lls_model,
-"Model 3" = bp_model),
-  colors = c("forestgreen","firebrick",
-             "blue4", "black"))
+model.list = list("No reg."=lls_model,
+"Model 1" = rlls_model, "Model 2"=r2lls_model,
+"Model 3" = bp_model), colors=c("forestgreen","firebrick","blue4","black"),
+     xlab='Date idx [ ]')
 ```
 
 

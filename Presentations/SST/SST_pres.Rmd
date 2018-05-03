@@ -41,8 +41,8 @@ gilbralter <- read_csv("data/gilbraltersimple.csv")
 gilt <- ts(gilbralter$tempMean, start=c(2004,1,13),
            end=c(2017, 11, 25), frequency=30)
 plot(gilt, main='SST of Gilbralter region',
-     xlab='Date',
-     ylab='Temperature (C)')
+     xlab='Date [Year]',
+     ylab='SST [deg C]')
 ```
 
 <!-- slide 5 -->
@@ -68,8 +68,8 @@ gilbralter <- read_csv("data/gilbraltersimple.csv")
 gilt <- ts(gilbralter$tempMean, start=c(2004,1,13),
            end=c(2017, 11, 25), frequency=30)
 plot(gilt, main='SST of Gilbralter region',
-     xlab='Date',
-     ylab='Temperature (C)')
+     xlab='Date [Year]',
+     ylab='SST [deg C]')
 ```
 
 
@@ -109,16 +109,20 @@ ll_fit <- bsts(gilt, state.specification = ll_ss,
 ```
 
 
-```{r}
-plot(ll_fit)
+```{r, fig.height=5}
+plot(ll_fit, main='Expectation of posterior',
+     xlab='Date idx [ ]',
+     ylab='SST [deg C]')
 ```
 
 <!-- slide 9 -->
 
 ## Model Plotting
 
-```{r}
-plot(ll_fit, 'components')
+```{r, fig.height=5}
+plot(ll_fit, 'components',
+     xlab='Date idx [ ]',
+     ylab='SST [deg C]')
 ```
 
 
@@ -126,8 +130,10 @@ plot(ll_fit, 'components')
 
 ## Model Plotting
 
-```{r}
-plot(ll_fit, 'residuals')
+```{r, fig.height=5}
+plot(ll_fit, 'residuals', main='Residuals',
+     xlab='Date idx [ ]',
+     ylab='SST [deg C]')
 ```
 
 
@@ -135,9 +141,12 @@ plot(ll_fit, 'residuals')
 
 ## Forecasting
 
-```{r}
+```{r, fig.height=5}
 ll_pred <- predict(ll_fit, horizon = 30)  
-plot(ll_pred, plot.original = 90)  
+plot(ll_pred, plot.original = 90,
+     main='Local linear forcasts',
+     xlab='Date idx [ ]',
+     ylab='SST [deg C]')  
 ```
 
 <!-- slide 12 -->
@@ -176,9 +185,12 @@ llt_fit <- bsts(gilt, state.specification = llt_ss,
                 niter = 1e3, ping = 0)
 ```
 
-```{r}
+```{r, fig.height=5}
 llt_pred <- predict(llt_fit, horizon = 30)
-plot(llt_pred, plot.original = 90)
+plot(llt_pred, plot.original = 90,
+     main='Local linear trend forcasts',
+     xlab='Date idx [ ]',
+     ylab='SST [deg C]')
 ```
 
 
@@ -215,8 +227,10 @@ lts_fit <- bsts(gilt, state.specification = lts_ss,
                 niter = 1e3, ping = 0)
 ```
 
-```{r}
-plot(lts_fit, 'components')
+```{r, fig.height=5}
+plot(lts_fit, 'components',
+     xlab='Date idx [ ]',
+     ylab='SST [deg C]')
 ```
 
 
@@ -224,9 +238,12 @@ plot(lts_fit, 'components')
 
 ## Forecasts
 
-```{r}
+```{r, fig.height=5}
 lts_pred <- predict(lts_fit, horizon = 30)
-plot(lts_pred, plot.original = 90)
+plot(lts_pred, plot.original = 90,
+     main='Seasonal local linear trend forcasts',
+     xlab='Date idx [ ]',
+     ylab='SST [deg C]')
 ```
 
 
@@ -238,6 +255,7 @@ plot(lts_pred, plot.original = 90)
 ```{r  fig.height=6}
 CompareBstsModels(lwd = 4, model.list = list(
   level = ll_fit, trend = llt_fit, season = lts_fit),
-  colors = c("forestgreen", "firebrick", "blue4"))
+  colors = c("forestgreen", "firebrick", "blue4"),
+  xlab='Date idx [ ]')
 ```
 

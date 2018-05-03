@@ -1,0 +1,21 @@
+convert -density 300 SST_pres.pdf -strip SST_pres-%02d.png
+
+convert -layers OptimizePlus \
+-delay 300 SST_pres-00.png \
+-delay 75 SST_pres-01.png \
+-delay 400 SST_pres-02.png \
+-delay 300 SST_pres-03.png \
+-delay 400 SST_pres-04.png \
+-delay 300 SST_pres-05.png \
+-delay 400 SST_pres-06.png \
+-delay 300 SST_pres-07.png \
+-delay 400 SST_pres-08.png \
+-delay 300 SST_pres-09.png \
+-delay 400 SST_pres-10.png \
+-delay 300 SST_pres-11.png \
+-delay 400 SST_pres-12.png \
+-delay 300 SST_pres-13.png \
+-delay 400 SST_pres-14.png \
+-delay 300 SST_pres-15.png \
+-delay 400 SST_pres-16.png \
+-loop 0 SST_pres.mp4
